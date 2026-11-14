@@ -3,6 +3,7 @@ import SwiftUI
 struct SettingsView: View {
     @EnvironmentObject private var hub: AudioHub
     @EnvironmentObject private var updates: UpdateChecker
+    @EnvironmentObject private var boards: BoardsModel
     @AppStorage("latencyMs") private var latency = 0.0
     @AppStorage("updateCheck") private var autoCheck = true
 
@@ -24,6 +25,16 @@ struct SettingsView: View {
                 Label("Dźwięki wbudowane powstają z kodu, są Twoje.", systemImage: "checkmark.seal.fill")
             } header: {
                 Text("Źródła dźwięków")
+            }
+
+            Section {
+                Button("Pobierz prawdziwe dźwięki na pady (bank A)") { Task { await boards.installStarter() } }
+                    .disabled(boards.starterProgress != nil)
+                Button("Odśwież katalog soundboardów") { Task { await boards.refreshCatalog() } }
+            } header: {
+                Text("Dźwięki z internetu")
+            } footer: {
+                Text("Katalog ma \(boards.catalog.boards.count) soundboardów. Pobrane dźwięki zostają w telefonie, więc grają bez internetu.")
             }
 
             Section {

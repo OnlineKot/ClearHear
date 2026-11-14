@@ -65,6 +65,7 @@ struct LibraryView: View {
     @StateObject private var preview = PreviewModel()
 
     @State private var tab = 1
+    @State private var webMode = 0
     @State private var query = ""
     @State private var results: [OVSound] = []
     @State private var page = 1
@@ -93,7 +94,7 @@ struct LibraryView: View {
                 .padding(.horizontal, 16)
                 .padding(.bottom, 8)
 
-                if tab == 0 { mine } else { web }
+                if tab == 0 { mine } else { internet }
             }
             .background(Backdrop())
             .navigationTitle(pick == nil ? "Biblioteka" : "Wybierz dźwięk")
@@ -198,6 +199,18 @@ struct LibraryView: View {
     }
 
     // ---------------------------------------------------------- internet
+
+    private var internet: some View {
+        VStack(spacing: 8) {
+            Picker("Internet", selection: $webMode) {
+                Text("Soundboardy").tag(0)
+                Text("Szukaj").tag(1)
+            }
+            .pickerStyle(.segmented)
+            .padding(.horizontal, 16)
+            if webMode == 0 { BoardsHome(pick: pick) } else { web }
+        }
+    }
 
     private var web: some View {
         VStack(spacing: 8) {

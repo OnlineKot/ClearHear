@@ -1,0 +1,2124 @@
+{
+ "version": 1,
+ "updated": "2026-11-14",
+ "source": "Openverse (Freesound i inne), licencje CC0 / CC BY / CC BY-SA / domena publiczna",
+ "boards": [
+  {
+   "id": "perkusja",
+   "title": "Perkusja",
+   "emoji": "🥁",
+   "sounds": [
+    {
+     "n": 1,
+     "title": "Stopa",
+     "original": "Simple Kick Drum",
+     "url": "https://cdn.freesound.org/previews/274/274775_4965320-hq.mp3",
+     "creator": "IanStarGem",
+     "license": "cc0",
+     "page": "https://freesound.org/people/IanStarGem/sounds/274775",
+     "seconds": 0.44
+    },
+    {
+     "n": 2,
+     "title": "Stopa 2",
+     "original": "Kick Drum",
+     "url": "https://cdn.freesound.org/previews/410/410149_7383104-hq.mp3",
+     "creator": "Poligonstudio",
+     "license": "cc0",
+     "page": "https://freesound.org/people/Poligonstudio/sounds/410149",
+     "seconds": 0.96
+    },
+    {
+     "n": 3,
+     "title": "Werbel",
+     "original": "snare drum 4.wav",
+     "url": "https://cdn.freesound.org/previews/82/82583_1299633-hq.mp3",
+     "creator": "KEVOY",
+     "license": "cc0",
+     "page": "https://freesound.org/people/KEVOY/sounds/82583",
+     "seconds": 1.79
+    },
+    {
+     "n": 4,
+     "title": "Werbel 2",
+     "original": "Dubstep Snare drum",
+     "url": "https://cdn.freesound.org/previews/190/190592_1317013-hq.mp3",
+     "creator": "Tr4ck3r",
+     "license": "cc0",
+     "page": "https://freesound.org/people/Tr4ck3r/sounds/190592",
+     "seconds": 1.06
+    },
+    {
+     "n": 5,
+     "title": "Hi-hat",
+     "original": "Zildjian A Custom Hi-Hat Cymbals Closed Hit.WAV",
+     "url": "https://cdn.freesound.org/previews/45/45664_394391-hq.mp3",
+     "creator": "pjcohen",
+     "license": "cc0",
+     "page": "https://freesound.org/people/pjcohen/sounds/45664",
+     "seconds": 0.27
+    },
+    {
+     "n": 6,
+     "title": "Hi-hat 2",
+     "original": "Echoed Hi-Hats",
+     "url": "https://cdn.freesound.org/previews/165/165321_3008343-hq.mp3",
+     "creator": "ani_music",
+     "license": "cc0",
+     "page": "https://freesound.org/people/ani_music/sounds/165321",
+     "seconds": 0.87
+    },
+    {
+     "n": 7,
+     "title": "Klaps",
+     "original": "Hand Claps",
+     "url": "https://cdn.freesound.org/previews/362/362954_6512973-hq.mp3",
+     "creator": "Jofae",
+     "license": "cc0",
+     "page": "https://freesound.org/people/Jofae/sounds/362954",
+     "seconds": 2.29
+    },
+    {
+     "n": 8,
+     "title": "Klaps 2",
+     "original": "Hand Clap 1.mp3",
+     "url": "https://cdn.freesound.org/previews/566/566510_11063232-hq.mp3",
+     "creator": "ShirabeKirariChan",
+     "license": "cc0",
+     "page": "https://freesound.org/people/ShirabeKirariChan/sounds/566510",
+     "seconds": 0.56
+    },
+    {
+     "n": 9,
+     "title": "Tom",
+     "original": "Yamaha Oak Custom Tom Mid.wav",
+     "url": "https://cdn.freesound.org/previews/46/46554_394391-hq.mp3",
+     "creator": "pjcohen",
+     "license": "cc0",
+     "page": "https://freesound.org/people/pjcohen/sounds/46554",
+     "seconds": 1.82
+    },
+    {
+     "n": 10,
+     "title": "Tom 2",
+     "original": "Yamaha Oak Custom Tom Low.wav",
+     "url": "https://cdn.freesound.org/previews/46/46553_394391-hq.mp3",
+     "creator": "pjcohen",
+     "license": "cc0",
+     "page": "https://freesound.org/people/pjcohen/sounds/46553",
+     "seconds": 2.32
+    },
+    {
+     "n": 11,
+     "title": "Talerz",
+     "original": "cymbal-reversed-glassy-resonance.wav",
+     "url": "https://cdn.freesound.org/previews/9/9523_24197-hq.mp3",
+     "creator": "burnttoys",
+     "license": "cc0",
+     "page": "https://freesound.org/people/burnttoys/sounds/9523",
+     "seconds": 3.16
+    },
+    {
+     "n": 12,
+     "title": "Talerz 2",
+     "original": "crash - china cymbal 1.wav",
+     "url": "https://cdn.freesound.org/previews/264/264532_3797507-hq.mp3",
+     "creator": "Logicogonist",
+     "license": "cc0",
+     "page": "https://freesound.org/people/Logicogonist/sounds/264532",
+     "seconds": 3.21
+    },
+    {
+     "n": 13,
+     "title": "Cowbell",
+     "original": "cowbell",
+     "url": "https://cdn.freesound.org/previews/468/468208_9910500-hq.mp3",
+     "creator": "6rzyb",
+     "license": "cc0",
+     "page": "https://freesound.org/people/6rzyb/sounds/468208",
+     "seconds": 3.25
+    },
+    {
+     "n": 14,
+     "title": "Cowbell 2",
+     "original": "COWBELL WITH BLASTICK",
+     "url": "https://cdn.freesound.org/previews/432/432202_8738244-hq.mp3",
+     "creator": "curesforbrokenhearts",
+     "license": "cc0",
+     "page": "https://freesound.org/people/curesforbrokenhearts/sounds/432202",
+     "seconds": 1.15
+    },
+    {
+     "n": 15,
+     "title": "Rimshot",
+     "original": "Rimshot (sweet)",
+     "url": "https://cdn.freesound.org/previews/132/132418_2412414-hq.mp3",
+     "creator": "Sajmund",
+     "license": "cc0",
+     "page": "https://freesound.org/people/Sajmund/sounds/132418",
+     "seconds": 1.07
+    },
+    {
+     "n": 16,
+     "title": "Rimshot 2",
+     "original": "Ludwig Black Beauty Snare Drum Open Rimshot Unprocessed.wav",
+     "url": "https://cdn.freesound.org/previews/46/46565_394391-hq.mp3",
+     "creator": "pjcohen",
+     "license": "cc0",
+     "page": "https://freesound.org/people/pjcohen/sounds/46565",
+     "seconds": 1.09
+    }
+   ]
+  },
+  {
+   "id": "reakcje",
+   "title": "Reakcje",
+   "emoji": "😂",
+   "sounds": [
+    {
+     "n": 1,
+     "title": "Śmiech",
+     "original": "Boy or Young Child Laughing",
+     "url": "https://cdn.freesound.org/previews/365/365632_3719168-hq.mp3",
+     "creator": "OBXJohn",
+     "license": "cc0",
+     "page": "https://freesound.org/people/OBXJohn/sounds/365632",
+     "seconds": 4.99
+    },
+    {
+     "n": 2,
+     "title": "Śmiech 2",
+     "original": "Small Crowd Laughing",
+     "url": "https://cdn.freesound.org/previews/138/138112_1572282-hq.mp3",
+     "creator": "snakebarney",
+     "license": "cc0",
+     "page": "https://freesound.org/people/snakebarney/sounds/138112",
+     "seconds": 4.57
+    },
+    {
+     "n": 3,
+     "title": "Brawa",
+     "original": "Applause 2.WAV",
+     "url": "https://cdn.freesound.org/previews/277/277021_1402315-hq.mp3",
+     "creator": "Sandermotions",
+     "license": "cc0",
+     "page": "https://freesound.org/people/Sandermotions/sounds/277021",
+     "seconds": 6.32
+    },
+    {
+     "n": 4,
+     "title": "Brawa 2",
+     "original": "Applause 1.WAV",
+     "url": "https://cdn.freesound.org/previews/277/277022_1402315-hq.mp3",
+     "creator": "Sandermotions",
+     "license": "cc0",
+     "page": "https://freesound.org/people/Sandermotions/sounds/277022",
+     "seconds": 6.56
+    },
+    {
+     "n": 5,
+     "title": "Buczenie",
+     "original": "boo 01.wav",
+     "url": "https://cdn.freesound.org/previews/336/336997_7037-hq.mp3",
+     "creator": "tim.kahn",
+     "license": "by",
+     "page": "https://freesound.org/people/tim.kahn/sounds/336997",
+     "seconds": 5.57
+    },
+    {
+     "n": 6,
+     "title": "Buczenie 2",
+     "original": "crowdbooing_01.wav",
+     "url": "https://cdn.freesound.org/previews/239/239595_4157918-hq.mp3",
+     "creator": "xtrgamr",
+     "license": "by",
+     "page": "https://freesound.org/people/xtrgamr/sounds/239595",
+     "seconds": 2.11
+    },
+    {
+     "n": 7,
+     "title": "Wiwaty",
+     "original": "Crowd Cheering and Applause",
+     "url": "https://cdn.freesound.org/previews/360/360620_1772601-hq.mp3",
+     "creator": "Ev-Dawg",
+     "license": "cc0",
+     "page": "https://freesound.org/people/Ev-Dawg/sounds/360620",
+     "seconds": 6.41
+    },
+    {
+     "n": 8,
+     "title": "Wiwaty 2",
+     "original": "BerlinGameScene.com Crowd Cheer 2",
+     "url": "https://cdn.freesound.org/previews/267/267248_5052946-hq.mp3",
+     "creator": "BerlinGameScene",
+     "license": "cc0",
+     "page": "https://freesound.org/people/BerlinGameScene/sounds/267248",
+     "seconds": 4.48
+    },
+    {
+     "n": 9,
+     "title": "Westchnienie",
+     "original": "Male Gasp 1.wav",
+     "url": "https://cdn.freesound.org/previews/344/344407_4986214-hq.mp3",
+     "creator": "jawbutch",
+     "license": "cc0",
+     "page": "https://freesound.org/people/jawbutch/sounds/344407",
+     "seconds": 0.67
+    },
+    {
+     "n": 10,
+     "title": "Westchnienie 2",
+     "original": "Male Gasp 4.wav",
+     "url": "https://cdn.freesound.org/previews/344/344415_4986214-hq.mp3",
+     "creator": "jawbutch",
+     "license": "cc0",
+     "page": "https://freesound.org/people/jawbutch/sounds/344415",
+     "seconds": 0.83
+    },
+    {
+     "n": 11,
+     "title": "Smutna trąbka",
+     "original": "LL-Q1860 (eng)-Flame, not lame-sad trombone",
+     "url": "https://upload.wikimedia.org/wikipedia/commons/3/30/LL-Q1860_%28eng%29-Flame%2C_not_lame-sad_trombone.wav",
+     "creator": "Speaker: Flame, not lame Recorder: Flame, not lame",
+     "license": "cc0",
+     "page": "https://commons.wikimedia.org/w/index.php?curid=162840768",
+     "seconds": 1.63
+    },
+    {
+     "n": 12,
+     "title": "Smutna trąbka 2",
+     "original": "wah wah sad trombone.wav",
+     "url": "https://cdn.freesound.org/previews/175/175409_1326576-hq.mp3",
+     "creator": "kirbydx",
+     "license": "cc0",
+     "page": "https://freesound.org/people/kirbydx/sounds/175409",
+     "seconds": 5.21
+    },
+    {
+     "n": 13,
+     "title": "Werbel rolka",
+     "original": "drum roll",
+     "url": "https://cdn.freesound.org/previews/197/197763_3680406-hq.mp3",
+     "creator": "owowowwo",
+     "license": "cc0",
+     "page": "https://freesound.org/people/owowowwo/sounds/197763",
+     "seconds": 1.71
+    },
+    {
+     "n": 14,
+     "title": "Werbel rolka 2",
+     "original": "Sting, rimshot, drum roll (smooth)",
+     "url": "https://cdn.freesound.org/previews/440/440829_1575452-hq.mp3",
+     "creator": "tlwmdbt",
+     "license": "cc0",
+     "page": "https://freesound.org/people/tlwmdbt/sounds/440829",
+     "seconds": 5.33
+    },
+    {
+     "n": 15,
+     "title": "Gwizd",
+     "original": "whistle .wav",
+     "url": "https://cdn.freesound.org/previews/151/151091_1897373-hq.mp3",
+     "creator": "ripper351",
+     "license": "cc0",
+     "page": "https://freesound.org/people/ripper351/sounds/151091",
+     "seconds": 1.1
+    },
+    {
+     "n": 16,
+     "title": "Gwizd 2",
+     "original": "218318 splicesound referee-whistle-blow-gymnasium",
+     "url": "https://upload.wikimedia.org/wikipedia/commons/7/7d/218318_splicesound_referee-whistle-blow-gymnasium.wav",
+     "creator": "SpliceSound",
+     "license": "cc0",
+     "page": "https://commons.wikimedia.org/w/index.php?curid=116753044",
+     "seconds": 3.33
+    }
+   ]
+  },
+  {
+   "id": "zwierzeta",
+   "title": "Zwierzęta",
+   "emoji": "🐶",
+   "sounds": [
+    {
+     "n": 1,
+     "title": "Pies",
+     "original": "Single Dog Bark",
+     "url": "https://cdn.freesound.org/previews/277/277058_4486188-hq.mp3",
+     "creator": "kwahmah_02",
+     "license": "cc0",
+     "page": "https://freesound.org/people/kwahmah_02/sounds/277058",
+     "seconds": 0.39
+    },
+    {
+     "n": 2,
+     "title": "Pies 2",
+     "original": "Dog barks",
+     "url": "https://cdn.freesound.org/previews/498/498394_10816113-hq.mp3",
+     "creator": "16FVolejnikovaA",
+     "license": "cc0",
+     "page": "https://freesound.org/people/16FVolejnikovaA/sounds/498394",
+     "seconds": 2.5
+    },
+    {
+     "n": 3,
+     "title": "Kot",
+     "original": "Cat meow",
+     "url": "https://cdn.freesound.org/previews/256/256452_4754386-hq.mp3",
+     "creator": "philsapphire",
+     "license": "cc0",
+     "page": "https://freesound.org/people/philsapphire/sounds/256452",
+     "seconds": 1.54
+    },
+    {
+     "n": 4,
+     "title": "Kot 2",
+     "original": "cat meow II",
+     "url": "https://cdn.freesound.org/previews/110/110010_1537422-hq.mp3",
+     "creator": "tuberatanka",
+     "license": "cc0",
+     "page": "https://freesound.org/people/tuberatanka/sounds/110010",
+     "seconds": 0.85
+    },
+    {
+     "n": 5,
+     "title": "Krowa",
+     "original": "Cow - Moo 5 - 96kHz.wav",
+     "url": "https://cdn.freesound.org/previews/233/233134_4056007-hq.mp3",
+     "creator": "JarredGibb",
+     "license": "cc0",
+     "page": "https://freesound.org/people/JarredGibb/sounds/233134",
+     "seconds": 2.97
+    },
+    {
+     "n": 6,
+     "title": "Krowa 2",
+     "original": "Cow - Moo 2 - 96kHz.wav",
+     "url": "https://cdn.freesound.org/previews/233/233129_4056007-hq.mp3",
+     "creator": "JarredGibb",
+     "license": "cc0",
+     "page": "https://freesound.org/people/JarredGibb/sounds/233129",
+     "seconds": 2.18
+    },
+    {
+     "n": 7,
+     "title": "Kogut",
+     "original": "Rooster crow",
+     "url": "https://cdn.freesound.org/previews/200/200339_3159560-hq.mp3",
+     "creator": "jsbarrett",
+     "license": "cc0",
+     "page": "https://freesound.org/people/jsbarrett/sounds/200339",
+     "seconds": 4.76
+    },
+    {
+     "n": 8,
+     "title": "Kogut 2",
+     "original": "Rooster Crow 2",
+     "url": "https://cdn.freesound.org/previews/435/435507_1196020-hq.mp3",
+     "creator": "BenjaminNelan",
+     "license": "cc0",
+     "page": "https://freesound.org/people/BenjaminNelan/sounds/435507",
+     "seconds": 2.05
+    },
+    {
+     "n": 9,
+     "title": "Koń",
+     "original": "Horse",
+     "url": "https://cdn.freesound.org/previews/521/521246_8923841-hq.mp3",
+     "creator": "poodaddy69",
+     "license": "cc0",
+     "page": "https://freesound.org/people/poodaddy69/sounds/521246",
+     "seconds": 2.27
+    },
+    {
+     "n": 10,
+     "title": "Koń 2",
+     "original": "Horse Neigh 2.wav",
+     "url": "https://cdn.freesound.org/previews/322/322450_5033007-hq.mp3",
+     "creator": "GoodListener",
+     "license": "by",
+     "page": "https://freesound.org/people/GoodListener/sounds/322450",
+     "seconds": 0.9
+    },
+    {
+     "n": 11,
+     "title": "Świnia",
+     "original": "Pig - Scream 5 - 96kHz.wav",
+     "url": "https://cdn.freesound.org/previews/233/233151_4056007-hq.mp3",
+     "creator": "JarredGibb",
+     "license": "cc0",
+     "page": "https://freesound.org/people/JarredGibb/sounds/233151",
+     "seconds": 1.97
+    },
+    {
+     "n": 12,
+     "title": "Świnia 2",
+     "original": "Pig - Multiple Snorts 2 (2 pigs) - 96kHz.wav",
+     "url": "https://cdn.freesound.org/previews/233/233183_4056007-hq.mp3",
+     "creator": "JarredGibb",
+     "license": "cc0",
+     "page": "https://freesound.org/people/JarredGibb/sounds/233183",
+     "seconds": 1.72
+    },
+    {
+     "n": 13,
+     "title": "Owca",
+     "original": "sheep bleats 02 160830_0957.wav",
+     "url": "https://cdn.freesound.org/previews/360/360547_1648170-hq.mp3",
+     "creator": "klankbeeld",
+     "license": "by",
+     "page": "https://freesound.org/people/klankbeeld/sounds/360547",
+     "seconds": 1.36
+    },
+    {
+     "n": 14,
+     "title": "Owca 2",
+     "original": "sheep bleats 007.wav",
+     "url": "https://cdn.freesound.org/previews/515/515878_1648170-hq.mp3",
+     "creator": "klankbeeld",
+     "license": "by",
+     "page": "https://freesound.org/people/klankbeeld/sounds/515878",
+     "seconds": 1.17
+    },
+    {
+     "n": 15,
+     "title": "Kaczka",
+     "original": "Toy Ducks Quacking",
+     "url": "https://cdn.freesound.org/previews/348/348791_584239-hq.mp3",
+     "creator": "nebyoolae",
+     "license": "cc0",
+     "page": "https://freesound.org/people/nebyoolae/sounds/348791",
+     "seconds": 4.79
+    },
+    {
+     "n": 16,
+     "title": "Kaczka 2",
+     "original": "Duck Quack - Sound Effect (HD).mp3",
+     "url": "https://cdn.freesound.org/previews/515/515408_10319640-hq.mp3",
+     "creator": "Tabby+Gus.",
+     "license": "cc0",
+     "page": "https://freesound.org/people/Tabby+Gus./sounds/515408",
+     "seconds": 3.06
+    }
+   ]
+  },
+  {
+   "id": "pojazdy",
+   "title": "Pojazdy",
+   "emoji": "🚗",
+   "sounds": [
+    {
+     "n": 1,
+     "title": "Klakson",
+     "original": "Car Horn Beeps.mp3",
+     "url": "https://cdn.freesound.org/previews/254/254678_1835926-hq.mp3",
+     "creator": "hsaunier10",
+     "license": "cc0",
+     "page": "https://freesound.org/people/hsaunier10/sounds/254678",
+     "seconds": 2.51
+    },
+    {
+     "n": 2,
+     "title": "Klakson 2",
+     "original": "Car Horn",
+     "url": "https://cdn.freesound.org/previews/517/517673_9996727-hq.mp3",
+     "creator": "danlucaz",
+     "license": "cc0",
+     "page": "https://freesound.org/people/danlucaz/sounds/517673",
+     "seconds": 2.03
+    },
+    {
+     "n": 3,
+     "title": "Policja",
+     "original": "yelp.wav",
+     "url": "https://cdn.freesound.org/previews/58/58015_533680-hq.mp3",
+     "creator": "guitarguy1985",
+     "license": "cc0",
+     "page": "https://freesound.org/people/guitarguy1985/sounds/58015",
+     "seconds": 5.24
+    },
+    {
+     "n": 4,
+     "title": "Policja 2",
+     "original": "RIVIERE_Anna_2017-2018-Police siren and guns shots.wav",
+     "url": "https://cdn.freesound.org/previews/410/410838_2465261-hq.mp3",
+     "creator": "univ_lyon3",
+     "license": "by",
+     "page": "https://freesound.org/people/univ_lyon3/sounds/410838",
+     "seconds": 5.14
+    },
+    {
+     "n": 5,
+     "title": "Karetka",
+     "original": "hilo.wav",
+     "url": "https://cdn.freesound.org/previews/58/58018_533680-hq.mp3",
+     "creator": "guitarguy1985",
+     "license": "cc0",
+     "page": "https://freesound.org/people/guitarguy1985/sounds/58018",
+     "seconds": 5.98
+    },
+    {
+     "n": 6,
+     "title": "Karetka 2",
+     "original": "Doppler siren.mp3",
+     "url": "https://cdn.freesound.org/previews/31/31920_35187-hq.mp3",
+     "creator": "jobro",
+     "license": "by",
+     "page": "https://freesound.org/people/jobro/sounds/31920",
+     "seconds": 7.25
+    },
+    {
+     "n": 7,
+     "title": "Pociąg",
+     "original": "Train Horn passenger - 2 Toots (Electric Multiple Unit).wav",
+     "url": "https://cdn.freesound.org/previews/647/647666_14219512-hq.mp3",
+     "creator": "JotrainG",
+     "license": "cc0",
+     "page": "https://freesound.org/people/JotrainG/sounds/647666",
+     "seconds": 1.2
+    },
+    {
+     "n": 8,
+     "title": "Pociąg 2",
+     "original": "Train Horn passenger - long blast (Electric Multiple Unit).m",
+     "url": "https://cdn.freesound.org/previews/647/647667_14219512-hq.mp3",
+     "creator": "JotrainG",
+     "license": "cc0",
+     "page": "https://freesound.org/people/JotrainG/sounds/647667",
+     "seconds": 1.96
+    },
+    {
+     "n": 9,
+     "title": "Samolot",
+     "original": "Air Plane Interior Ambience Loop",
+     "url": "https://cdn.freesound.org/previews/270/270271_4965320-hq.mp3",
+     "creator": "IanStarGem",
+     "license": "cc0",
+     "page": "https://freesound.org/people/IanStarGem/sounds/270271",
+     "seconds": 4.97
+    },
+    {
+     "n": 10,
+     "title": "Samolot 2",
+     "original": "8-bit Flyby.wav",
+     "url": "https://cdn.freesound.org/previews/162/162800_2578041-hq.mp3",
+     "creator": "timgormly",
+     "license": "cc0",
+     "page": "https://freesound.org/people/timgormly/sounds/162800",
+     "seconds": 1.83
+    },
+    {
+     "n": 11,
+     "title": "Helikopter",
+     "original": "Helicopter Rotor Loop.flac",
+     "url": "https://cdn.freesound.org/previews/187/187681_71257-hq.mp3",
+     "creator": "qubodup",
+     "license": "cc0",
+     "page": "https://freesound.org/people/qubodup/sounds/187681",
+     "seconds": 6.32
+    },
+    {
+     "n": 12,
+     "title": "Helikopter 2",
+     "original": "helicopter",
+     "url": "https://cdn.freesound.org/previews/191/191595_2437358-hq.mp3",
+     "creator": "Leszek_Szary",
+     "license": "cc0",
+     "page": "https://freesound.org/people/Leszek_Szary/sounds/191595",
+     "seconds": 2.95
+    },
+    {
+     "n": 13,
+     "title": "Motor",
+     "original": "MotorCycle Engine Start",
+     "url": "https://cdn.freesound.org/previews/679/679416_14220036-hq.mp3",
+     "creator": "gamer500",
+     "license": "cc0",
+     "page": "https://freesound.org/people/gamer500/sounds/679416",
+     "seconds": 2.86
+    },
+    {
+     "n": 14,
+     "title": "Motor 2",
+     "original": "motorcycle engine",
+     "url": "https://cdn.freesound.org/previews/560/560387_12494319-hq.mp3",
+     "creator": "Natha_mf.",
+     "license": "cc0",
+     "page": "https://freesound.org/people/Natha_mf./sounds/560387",
+     "seconds": 6.0
+    },
+    {
+     "n": 15,
+     "title": "Pisk opon",
+     "original": "[SFX] car screech 2",
+     "url": "https://cdn.freesound.org/previews/233/233558_1676145-hq.mp3",
+     "creator": "waveplaySFX",
+     "license": "cc0",
+     "page": "https://freesound.org/people/waveplaySFX/sounds/233558",
+     "seconds": 2.41
+    },
+    {
+     "n": 16,
+     "title": "Pisk opon 2",
+     "original": "Tire.ogg",
+     "url": "https://cdn.freesound.org/previews/536/536769_1415754-hq.mp3",
+     "creator": "egomassive",
+     "license": "cc0",
+     "page": "https://freesound.org/people/egomassive/sounds/536769",
+     "seconds": 1.9
+    }
+   ]
+  },
+  {
+   "id": "filmowe",
+   "title": "Efekty filmowe",
+   "emoji": "🎬",
+   "sounds": [
+    {
+     "n": 1,
+     "title": "Wybuch",
+     "original": "Swoosh Explosion",
+     "url": "https://cdn.freesound.org/previews/234/234555_4238641-hq.mp3",
+     "creator": "Electroviolence",
+     "license": "cc0",
+     "page": "https://freesound.org/people/Electroviolence/sounds/234555",
+     "seconds": 4.61
+    },
+    {
+     "n": 2,
+     "title": "Wybuch 2",
+     "original": "Musket Explosion",
+     "url": "https://cdn.freesound.org/previews/244/244345_1868310-hq.mp3",
+     "creator": "Willlewis",
+     "license": "cc0",
+     "page": "https://freesound.org/people/Willlewis/sounds/244345",
+     "seconds": 1.91
+    },
+    {
+     "n": 3,
+     "title": "Whoosh",
+     "original": "Deep Whoosh #1",
+     "url": "https://cdn.freesound.org/previews/351/351256_2247456-hq.mp3",
+     "creator": "Kinoton",
+     "license": "cc0",
+     "page": "https://freesound.org/people/Kinoton/sounds/351256",
+     "seconds": 3.15
+    },
+    {
+     "n": 4,
+     "title": "Whoosh 2",
+     "original": "Swosh swoosh whoosh air sound, free, high quality",
+     "url": "https://cdn.freesound.org/previews/60/60026_71257-hq.mp3",
+     "creator": "qubodup",
+     "license": "cc0",
+     "page": "https://freesound.org/people/qubodup/sounds/60026",
+     "seconds": 0.49
+    },
+    {
+     "n": 5,
+     "title": "Cios",
+     "original": "Punch Hit 1.wav",
+     "url": "https://cdn.freesound.org/previews/439/439747_3507073-hq.mp3",
+     "creator": "joe_anderson22",
+     "license": "cc0",
+     "page": "https://freesound.org/people/joe_anderson22/sounds/439747",
+     "seconds": 1.02
+    },
+    {
+     "n": 6,
+     "title": "Cios 2",
+     "original": "Punch_02.wav",
+     "url": "https://cdn.freesound.org/previews/118/118513_2136023-hq.mp3",
+     "creator": "thefsoundman",
+     "license": "cc0",
+     "page": "https://freesound.org/people/thefsoundman/sounds/118513",
+     "seconds": 0.63
+    },
+    {
+     "n": 7,
+     "title": "Miecz",
+     "original": "sword-01.wav",
+     "url": "https://cdn.freesound.org/previews/52/52458_631427-hq.mp3",
+     "creator": "audione",
+     "license": "cc0",
+     "page": "https://freesound.org/people/audione/sounds/52458",
+     "seconds": 1.58
+    },
+    {
+     "n": 8,
+     "title": "Miecz 2",
+     "original": "My Sword Hit 1.wav.wav",
+     "url": "https://cdn.freesound.org/previews/175/175949_2542588-hq.mp3",
+     "creator": "freefire66",
+     "license": "cc0",
+     "page": "https://freesound.org/people/freefire66/sounds/175949",
+     "seconds": 2.39
+    },
+    {
+     "n": 9,
+     "title": "Grzmot",
+     "original": "Thunder rumbling, underwater, outdoors_Thunder rumbling.aif",
+     "url": "https://cdn.freesound.org/previews/151/151854_2094213-hq.mp3",
+     "creator": "carroll27",
+     "license": "cc0",
+     "page": "https://freesound.org/people/carroll27/sounds/151854",
+     "seconds": 2.79
+    },
+    {
+     "n": 10,
+     "title": "Szkło",
+     "original": "Glass Breaking",
+     "url": "https://cdn.freesound.org/previews/378/378568_7020227-hq.mp3",
+     "creator": "ToxicFilmzSRsounds",
+     "license": "cc0",
+     "page": "https://freesound.org/people/ToxicFilmzSRsounds/sounds/378568",
+     "seconds": 2.25
+    },
+    {
+     "n": 11,
+     "title": "Szkło 2",
+     "original": "Glass Break 1.wav",
+     "url": "https://cdn.freesound.org/previews/371/371094_6901532-hq.mp3",
+     "creator": "mccormick_iain",
+     "license": "cc0",
+     "page": "https://freesound.org/people/mccormick_iain/sounds/371094",
+     "seconds": 1.8
+    },
+    {
+     "n": 12,
+     "title": "Krzyk",
+     "original": "Scream",
+     "url": "https://cdn.freesound.org/previews/219/219856_4095110-hq.mp3",
+     "creator": "claracarpintero",
+     "license": "cc0",
+     "page": "https://freesound.org/people/claracarpintero/sounds/219856",
+     "seconds": 1.2
+    },
+    {
+     "n": 13,
+     "title": "Krzyk 2",
+     "original": "Scream",
+     "url": "https://cdn.freesound.org/previews/381/381951_7105180-hq.mp3",
+     "creator": "ngrib",
+     "license": "cc0",
+     "page": "https://freesound.org/people/ngrib/sounds/381951",
+     "seconds": 4.22
+    },
+    {
+     "n": 14,
+     "title": "Uderzenie",
+     "original": "Soft Cinematic Impact",
+     "url": "https://cdn.freesound.org/previews/560/560156_10825267-hq.mp3",
+     "creator": "Rizzard",
+     "license": "cc0",
+     "page": "https://freesound.org/people/Rizzard/sounds/560156",
+     "seconds": 6.0
+    },
+    {
+     "n": 15,
+     "title": "Uderzenie 2",
+     "original": "Cinematic Impact",
+     "url": "https://cdn.freesound.org/previews/559/559387_10825267-hq.mp3",
+     "creator": "Rizzard",
+     "license": "cc0",
+     "page": "https://freesound.org/people/Rizzard/sounds/559387",
+     "seconds": 4.0
+    }
+   ]
+  },
+  {
+   "id": "dom",
+   "title": "Dom",
+   "emoji": "🏠",
+   "sounds": [
+    {
+     "n": 1,
+     "title": "Dzwonek",
+     "original": "Doorbell Notification",
+     "url": "https://cdn.freesound.org/previews/415/415763_6090639-hq.mp3",
+     "creator": "TheBuilder15",
+     "license": "cc0",
+     "page": "https://freesound.org/people/TheBuilder15/sounds/415763",
+     "seconds": 2.67
+    },
+    {
+     "n": 2,
+     "title": "Dzwonek 2",
+     "original": "Doorbell apartment front door",
+     "url": "https://cdn.freesound.org/previews/275/275629_5286375-hq.mp3",
+     "creator": "hanneswannerberger",
+     "license": "cc0",
+     "page": "https://freesound.org/people/hanneswannerberger/sounds/275629",
+     "seconds": 5.23
+    },
+    {
+     "n": 3,
+     "title": "Pukanie",
+     "original": "Knock on door",
+     "url": "https://cdn.freesound.org/previews/237/237937_1203876-hq.mp3",
+     "creator": "jankooiker",
+     "license": "cc0",
+     "page": "https://freesound.org/people/jankooiker/sounds/237937",
+     "seconds": 0.77
+    },
+    {
+     "n": 4,
+     "title": "Pukanie 2",
+     "original": "Triple Knock on Door",
+     "url": "https://cdn.freesound.org/previews/351/351144_5567612-hq.mp3",
+     "creator": "Tombombadil1988",
+     "license": "cc0",
+     "page": "https://freesound.org/people/Tombombadil1988/sounds/351144",
+     "seconds": 1.39
+    },
+    {
+     "n": 5,
+     "title": "Telefon",
+     "original": "Telephone Ring (old German W48)",
+     "url": "https://cdn.freesound.org/previews/332/332073_5832939-hq.mp3",
+     "creator": "meisterleise",
+     "license": "cc0",
+     "page": "https://freesound.org/people/meisterleise/sounds/332073",
+     "seconds": 5.17
+    },
+    {
+     "n": 6,
+     "title": "Telefon 2",
+     "original": "Retro video game sfx - Telephone ring",
+     "url": "https://cdn.freesound.org/previews/404/404758_140737-hq.mp3",
+     "creator": "OwlStorm",
+     "license": "cc0",
+     "page": "https://freesound.org/people/OwlStorm/sounds/404758",
+     "seconds": 1.33
+    },
+    {
+     "n": 7,
+     "title": "Budzik",
+     "original": "Generic Alarm Clock",
+     "url": "https://cdn.freesound.org/previews/223/223176_2792951-hq.mp3",
+     "creator": "Yoyodaman234",
+     "license": "cc0",
+     "page": "https://freesound.org/people/Yoyodaman234/sounds/223176",
+     "seconds": 4.5
+    },
+    {
+     "n": 8,
+     "title": "Budzik 2",
+     "original": "Alarm Clock turn off",
+     "url": "https://cdn.freesound.org/previews/446/446573_9134393-hq.mp3",
+     "creator": "Nicolas4677",
+     "license": "cc0",
+     "page": "https://freesound.org/people/Nicolas4677/sounds/446573",
+     "seconds": 0.5
+    },
+    {
+     "n": 9,
+     "title": "Mikrofalówka",
+     "original": "Microwave Bleeps 01.wav",
+     "url": "https://cdn.freesound.org/previews/219/219506_4056007-hq.mp3",
+     "creator": "JarredGibb",
+     "license": "cc0",
+     "page": "https://freesound.org/people/JarredGibb/sounds/219506",
+     "seconds": 4.85
+    },
+    {
+     "n": 10,
+     "title": "Mikrofalówka 2",
+     "original": "Beep Beep.wav",
+     "url": "https://cdn.freesound.org/previews/475/475981_6912397-hq.mp3",
+     "creator": "TubbsMedia",
+     "license": "cc0",
+     "page": "https://freesound.org/people/TubbsMedia/sounds/475981",
+     "seconds": 3.0
+    },
+    {
+     "n": 11,
+     "title": "Kapanie",
+     "original": "Water Drip 01.wav",
+     "url": "https://cdn.freesound.org/previews/51/51754_616218-hq.mp3",
+     "creator": "erkanozan",
+     "license": "cc0",
+     "page": "https://freesound.org/people/erkanozan/sounds/51754",
+     "seconds": 0.29
+    },
+    {
+     "n": 12,
+     "title": "Kapanie 2",
+     "original": "Water Drips/drops",
+     "url": "https://cdn.freesound.org/previews/273/273331_2395329-hq.mp3",
+     "creator": "acmkyne",
+     "license": "cc0",
+     "page": "https://freesound.org/people/acmkyne/sounds/273331",
+     "seconds": 5.22
+    },
+    {
+     "n": 13,
+     "title": "Klawiatura",
+     "original": "Keyboard Typing Tapping.wav",
+     "url": "https://cdn.freesound.org/previews/250/250390_10476-hq.mp3",
+     "creator": "Psykophobia",
+     "license": "cc0",
+     "page": "https://freesound.org/people/Psykophobia/sounds/250390",
+     "seconds": 4.14
+    },
+    {
+     "n": 14,
+     "title": "Klawiatura 2",
+     "original": "Keyboard Typing 001.wav",
+     "url": "https://cdn.freesound.org/previews/539/539146_6205597-hq.mp3",
+     "creator": "ristooooo1",
+     "license": "cc0",
+     "page": "https://freesound.org/people/ristooooo1/sounds/539146",
+     "seconds": 3.65
+    },
+    {
+     "n": 15,
+     "title": "Aparat",
+     "original": "Camera Shutter",
+     "url": "https://cdn.freesound.org/previews/170/170229_3133582-hq.mp3",
+     "creator": "roachpowder",
+     "license": "cc0",
+     "page": "https://freesound.org/people/roachpowder/sounds/170229",
+     "seconds": 0.29
+    },
+    {
+     "n": 16,
+     "title": "Aparat 2",
+     "original": "Camera Shutter Click",
+     "url": "https://cdn.freesound.org/previews/271/271010_2276808-hq.mp3",
+     "creator": "Kodack",
+     "license": "cc0",
+     "page": "https://freesound.org/people/Kodack/sounds/271010",
+     "seconds": 1.56
+    }
+   ]
+  },
+  {
+   "id": "natura",
+   "title": "Natura",
+   "emoji": "🌲",
+   "sounds": [
+    {
+     "n": 1,
+     "title": "Wiatr",
+     "original": "Wind Gust",
+     "url": "https://cdn.freesound.org/previews/146/146932_1274078-hq.mp3",
+     "creator": "crashoverride6",
+     "license": "cc0",
+     "page": "https://freesound.org/people/crashoverride6/sounds/146932",
+     "seconds": 7.7
+    },
+    {
+     "n": 2,
+     "title": "Wiatr 2",
+     "original": "swoosh wind 09.flac",
+     "url": "https://cdn.freesound.org/previews/59/59996_71257-hq.mp3",
+     "creator": "qubodup",
+     "license": "cc0",
+     "page": "https://freesound.org/people/qubodup/sounds/59996",
+     "seconds": 0.18
+    },
+    {
+     "n": 3,
+     "title": "Ognisko",
+     "original": "Fire Crackling",
+     "url": "https://cdn.freesound.org/previews/188/188038_3403708-hq.mp3",
+     "creator": "AntumDeluge",
+     "license": "cc0",
+     "page": "https://freesound.org/people/AntumDeluge/sounds/188038",
+     "seconds": 2.87
+    },
+    {
+     "n": 4,
+     "title": "Ognisko 2",
+     "original": "Fire Crackle",
+     "url": "https://cdn.freesound.org/previews/540/540827_10912485-hq.mp3",
+     "creator": "EminYILDIRIM",
+     "license": "by",
+     "page": "https://freesound.org/people/EminYILDIRIM/sounds/540827",
+     "seconds": 3.47
+    },
+    {
+     "n": 5,
+     "title": "Ptaki",
+     "original": "Happy Bird Singing",
+     "url": "https://cdn.freesound.org/previews/511/511094_8472935-hq.mp3",
+     "creator": "se2001",
+     "license": "cc0",
+     "page": "https://freesound.org/people/se2001/sounds/511094",
+     "seconds": 2.65
+    },
+    {
+     "n": 6,
+     "title": "Ptaki 2",
+     "original": "Bird-Sing-3.mp3",
+     "url": "https://cdn.freesound.org/previews/395/395830_7399650-hq.mp3",
+     "creator": "Wakerone",
+     "license": "cc0",
+     "page": "https://freesound.org/people/Wakerone/sounds/395830",
+     "seconds": 1.35
+    },
+    {
+     "n": 7,
+     "title": "Świerszcze",
+     "original": "Cricket",
+     "url": "https://cdn.freesound.org/previews/337/337435_1772601-hq.mp3",
+     "creator": "Ev-Dawg",
+     "license": "cc0",
+     "page": "https://freesound.org/people/Ev-Dawg/sounds/337435",
+     "seconds": 1.0
+    },
+    {
+     "n": 8,
+     "title": "Świerszcze 2",
+     "original": "Cricket - Grillo",
+     "url": "https://cdn.freesound.org/previews/543/543965_4517415-hq.mp3",
+     "creator": "Lunevix",
+     "license": "cc0",
+     "page": "https://freesound.org/people/Lunevix/sounds/543965",
+     "seconds": 2.12
+    },
+    {
+     "n": 9,
+     "title": "Rzeka",
+     "original": "AMBIENT LOOP - River water by Field.mp3",
+     "url": "https://cdn.freesound.org/previews/39/39831_28216-hq.mp3",
+     "creator": "Arctura",
+     "license": "by",
+     "page": "https://freesound.org/people/Arctura/sounds/39831",
+     "seconds": 7.3
+    }
+   ]
+  },
+  {
+   "id": "scifi",
+   "title": "Sci-Fi",
+   "emoji": "🛸",
+   "sounds": [
+    {
+     "n": 1,
+     "title": "Laser",
+     "original": "Laser",
+     "url": "https://cdn.freesound.org/previews/376/376694_150886-hq.mp3",
+     "creator": "Daleonfire",
+     "license": "cc0",
+     "page": "https://freesound.org/people/Daleonfire/sounds/376694",
+     "seconds": 1.07
+    },
+    {
+     "n": 2,
+     "title": "Laser 2",
+     "original": "Laser Sound.mp3",
+     "url": "https://cdn.freesound.org/previews/69/69944_1015418-hq.mp3",
+     "creator": "ElevatorProductions",
+     "license": "cc0",
+     "page": "https://freesound.org/people/ElevatorProductions/sounds/69944",
+     "seconds": 0.35
+    },
+    {
+     "n": 3,
+     "title": "Robot",
+     "original": "Robotness",
+     "url": "https://cdn.freesound.org/previews/198/198970_2463454-hq.mp3",
+     "creator": "thehorriblejoke",
+     "license": "cc0",
+     "page": "https://freesound.org/people/thehorriblejoke/sounds/198970",
+     "seconds": 1.76
+    },
+    {
+     "n": 4,
+     "title": "Robot 2",
+     "original": "Robot.",
+     "url": "https://cdn.freesound.org/previews/199/199905_2462-hq.mp3",
+     "creator": "urupin",
+     "license": "cc0",
+     "page": "https://freesound.org/people/urupin/sounds/199905",
+     "seconds": 4.98
+    },
+    {
+     "n": 5,
+     "title": "Obcy",
+     "original": "Sci-fi alien UFO warble",
+     "url": "https://cdn.freesound.org/previews/221/221517_1282865-hq.mp3",
+     "creator": "AlaskaRobotics",
+     "license": "cc0",
+     "page": "https://freesound.org/people/AlaskaRobotics/sounds/221517",
+     "seconds": 3.5
+    },
+    {
+     "n": 6,
+     "title": "Obcy 2",
+     "original": "Alien Alarm Broadcast",
+     "url": "https://cdn.freesound.org/previews/240/240851_2975543-hq.mp3",
+     "creator": "Airborne80",
+     "license": "by",
+     "page": "https://freesound.org/people/Airborne80/sounds/240851",
+     "seconds": 5.84
+    },
+    {
+     "n": 7,
+     "title": "Teleport",
+     "original": "teleport",
+     "url": "https://cdn.freesound.org/previews/172/172207_2437358-hq.mp3",
+     "creator": "Leszek_Szary",
+     "license": "cc0",
+     "page": "https://freesound.org/people/Leszek_Szary/sounds/172207",
+     "seconds": 0.75
+    },
+    {
+     "n": 8,
+     "title": "Teleport 2",
+     "original": "Teleport",
+     "url": "https://cdn.freesound.org/previews/245/245731_1656228-hq.mp3",
+     "creator": "noirenex",
+     "license": "cc0",
+     "page": "https://freesound.org/people/noirenex/sounds/245731",
+     "seconds": 3.61
+    },
+    {
+     "n": 9,
+     "title": "Statek",
+     "original": "FX background drone - spaceship (+FX).wav",
+     "url": "https://cdn.freesound.org/previews/130/130885_16058-hq.mp3",
+     "creator": "Karma-Ron",
+     "license": "cc0",
+     "page": "https://freesound.org/people/Karma-Ron/sounds/130885",
+     "seconds": 3.76
+    },
+    {
+     "n": 10,
+     "title": "Statek 2",
+     "original": "Spaceship",
+     "url": "https://cdn.freesound.org/previews/250/250843_3914271-hq.mp3",
+     "creator": "tyops",
+     "license": "by",
+     "page": "https://freesound.org/people/tyops/sounds/250843",
+     "seconds": 4.6
+    },
+    {
+     "n": 11,
+     "title": "Power-up",
+     "original": "Jump sound or Power Up sound",
+     "url": "https://cdn.freesound.org/previews/198/198784_3478269-hq.mp3",
+     "creator": "Cman634",
+     "license": "cc0",
+     "page": "https://freesound.org/people/Cman634/sounds/198784",
+     "seconds": 1.89
+    },
+    {
+     "n": 12,
+     "title": "Power-up 2",
+     "original": "Power Up",
+     "url": "https://cdn.freesound.org/previews/351/351499_2463454-hq.mp3",
+     "creator": "thehorriblejoke",
+     "license": "cc0",
+     "page": "https://freesound.org/people/thehorriblejoke/sounds/351499",
+     "seconds": 1.76
+    },
+    {
+     "n": 13,
+     "title": "Power-down",
+     "original": "Power Down",
+     "url": "https://cdn.freesound.org/previews/169/169994_2747497-hq.mp3",
+     "creator": "peepholecircus",
+     "license": "cc0",
+     "page": "https://freesound.org/people/peepholecircus/sounds/169994",
+     "seconds": 4.4
+    },
+    {
+     "n": 14,
+     "title": "Power-down 2",
+     "original": "power-down-01.wav",
+     "url": "https://cdn.freesound.org/previews/348/348249_4067257-hq.mp3",
+     "creator": "newagesoup",
+     "license": "cc0",
+     "page": "https://freesound.org/people/newagesoup/sounds/348249",
+     "seconds": 3.92
+    },
+    {
+     "n": 15,
+     "title": "Komputer",
+     "original": "Computer Beep",
+     "url": "https://cdn.freesound.org/previews/250/250104_2772007-hq.mp3",
+     "creator": "phatcorns",
+     "license": "cc0",
+     "page": "https://freesound.org/people/phatcorns/sounds/250104",
+     "seconds": 0.21
+    },
+    {
+     "n": 16,
+     "title": "Komputer 2",
+     "original": "Computer Beep 1",
+     "url": "https://cdn.freesound.org/previews/220/220181_4100837-hq.mp3",
+     "creator": "GameAudio",
+     "license": "cc0",
+     "page": "https://freesound.org/people/GameAudio/sounds/220181",
+     "seconds": 0.5
+    }
+   ]
+  },
+  {
+   "id": "retro",
+   "title": "Retro gry",
+   "emoji": "🕹️",
+   "sounds": [
+    {
+     "n": 1,
+     "title": "Moneta",
+     "original": "8Bit Coin Collection #2",
+     "url": "https://cdn.freesound.org/previews/649/649726_14130375-hq.mp3",
+     "creator": "Duskbreaker",
+     "license": "cc0",
+     "page": "https://freesound.org/people/Duskbreaker/sounds/649726",
+     "seconds": 0.29
+    },
+    {
+     "n": 2,
+     "title": "Moneta 2",
+     "original": "8Bit Coin Collection",
+     "url": "https://cdn.freesound.org/previews/641/641273_14130375-hq.mp3",
+     "creator": "Duskbreaker",
+     "license": "cc0",
+     "page": "https://freesound.org/people/Duskbreaker/sounds/641273",
+     "seconds": 0.52
+    },
+    {
+     "n": 3,
+     "title": "Skok",
+     "original": "8Bit Jump",
+     "url": "https://cdn.freesound.org/previews/649/649725_14130375-hq.mp3",
+     "creator": "Duskbreaker",
+     "license": "cc0",
+     "page": "https://freesound.org/people/Duskbreaker/sounds/649725",
+     "seconds": 0.16
+    },
+    {
+     "n": 4,
+     "title": "Skok 2",
+     "original": "8bit Jump",
+     "url": "https://cdn.freesound.org/previews/505/505324_150886-hq.mp3",
+     "creator": "Daleonfire",
+     "license": "cc0",
+     "page": "https://freesound.org/people/Daleonfire/sounds/505324",
+     "seconds": 0.28
+    },
+    {
+     "n": 5,
+     "title": "Game over",
+     "original": "Arcade Game Over",
+     "url": "https://cdn.freesound.org/previews/412/412168_7383104-hq.mp3",
+     "creator": "Poligonstudio",
+     "license": "cc0",
+     "page": "https://freesound.org/people/Poligonstudio/sounds/412168",
+     "seconds": 2.0
+    },
+    {
+     "n": 6,
+     "title": "Game over 2",
+     "original": "Game Over 01.wav",
+     "url": "https://cdn.freesound.org/previews/345/345666_6142149-hq.mp3",
+     "creator": "MATRIXXX_",
+     "license": "cc0",
+     "page": "https://freesound.org/people/MATRIXXX_/sounds/345666",
+     "seconds": 1.39
+    },
+    {
+     "n": 7,
+     "title": "Level up",
+     "original": "LL-Q1860 (eng)-Flame, not lame-level up",
+     "url": "https://upload.wikimedia.org/wikipedia/commons/b/b2/LL-Q1860_%28eng%29-Flame%2C_not_lame-level_up.wav",
+     "creator": "Speaker: Flame, not lame Recorder: Flame, not lame",
+     "license": "cc0",
+     "page": "https://commons.wikimedia.org/w/index.php?curid=153273684",
+     "seconds": 1.01
+    },
+    {
+     "n": 8,
+     "title": "Level up 2",
+     "original": "Level up sound.wav",
+     "url": "https://cdn.freesound.org/previews/644/644409_12467243-hq.mp3",
+     "creator": "vibritherabjit123",
+     "license": "cc0",
+     "page": "https://freesound.org/people/vibritherabjit123/sounds/644409",
+     "seconds": 3.2
+    },
+    {
+     "n": 9,
+     "title": "Wybuch 8-bit",
+     "original": "8Bit Explosion",
+     "url": "https://cdn.freesound.org/previews/641/641486_14130375-hq.mp3",
+     "creator": "Duskbreaker",
+     "license": "cc0",
+     "page": "https://freesound.org/people/Duskbreaker/sounds/641486",
+     "seconds": 0.36
+    },
+    {
+     "n": 10,
+     "title": "Wybuch 8-bit 2",
+     "original": "8bit explosion 4",
+     "url": "https://cdn.freesound.org/previews/721/721795_15555277-hq.mp3",
+     "creator": "MaoDin204",
+     "license": "cc0",
+     "page": "https://freesound.org/people/MaoDin204/sounds/721795",
+     "seconds": 0.63
+    },
+    {
+     "n": 11,
+     "title": "Blip",
+     "original": "Reverse Blip",
+     "url": "https://cdn.freesound.org/previews/450/450612_9159316-hq.mp3",
+     "creator": "Breviceps",
+     "license": "cc0",
+     "page": "https://freesound.org/people/Breviceps/sounds/450612",
+     "seconds": 0.29
+    },
+    {
+     "n": 12,
+     "title": "Blip 2",
+     "original": "Blip or Select",
+     "url": "https://cdn.freesound.org/previews/379/379339_6512973-hq.mp3",
+     "creator": "Jofae",
+     "license": "cc0",
+     "page": "https://freesound.org/people/Jofae/sounds/379339",
+     "seconds": 0.33
+    },
+    {
+     "n": 13,
+     "title": "Laser 8-bit",
+     "original": "Laser2",
+     "url": "https://cdn.freesound.org/previews/505/505235_150886-hq.mp3",
+     "creator": "Daleonfire",
+     "license": "cc0",
+     "page": "https://freesound.org/people/Daleonfire/sounds/505235",
+     "seconds": 0.62
+    },
+    {
+     "n": 14,
+     "title": "Laser 8-bit 2",
+     "original": "Laser04.wav",
+     "url": "https://cdn.freesound.org/previews/344/344513_5619086-hq.mp3",
+     "creator": "jeremysykes",
+     "license": "cc0",
+     "page": "https://freesound.org/people/jeremysykes/sounds/344513",
+     "seconds": 0.26
+    },
+    {
+     "n": 15,
+     "title": "Bonus",
+     "original": "8Bit Power Up",
+     "url": "https://cdn.freesound.org/previews/649/649724_14130375-hq.mp3",
+     "creator": "Duskbreaker",
+     "license": "cc0",
+     "page": "https://freesound.org/people/Duskbreaker/sounds/649724",
+     "seconds": 0.2
+    },
+    {
+     "n": 16,
+     "title": "Bonus 2",
+     "original": "8-Bit Powerup",
+     "url": "https://cdn.freesound.org/previews/431/431329_2711716-hq.mp3",
+     "creator": "SomeGuy22",
+     "license": "cc0",
+     "page": "https://freesound.org/people/SomeGuy22/sounds/431329",
+     "seconds": 0.5
+    }
+   ]
+  },
+  {
+   "id": "straszne",
+   "title": "Straszne",
+   "emoji": "👻",
+   "sounds": [
+    {
+     "n": 1,
+     "title": "Śmiech zła",
+     "original": "Female Evil Laugh",
+     "url": "https://cdn.freesound.org/previews/219/219778_3298571-hq.mp3",
+     "creator": "MadamVicious",
+     "license": "cc0",
+     "page": "https://freesound.org/people/MadamVicious/sounds/219778",
+     "seconds": 3.1
+    },
+    {
+     "n": 2,
+     "title": "Śmiech zła 2",
+     "original": "Evil Laugh",
+     "url": "https://cdn.freesound.org/previews/401/401332_6652552-hq.mp3",
+     "creator": "ckvoiceover",
+     "license": "cc0",
+     "page": "https://freesound.org/people/ckvoiceover/sounds/401332",
+     "seconds": 3.98
+    },
+    {
+     "n": 3,
+     "title": "Duch",
+     "original": "Creepy Ghost Scream",
+     "url": "https://cdn.freesound.org/previews/352/352508_3570427-hq.mp3",
+     "creator": "epicdude959",
+     "license": "cc0",
+     "page": "https://freesound.org/people/epicdude959/sounds/352508",
+     "seconds": 6.96
+    },
+    {
+     "n": 4,
+     "title": "Duch 2",
+     "original": "Wobbly Ghost",
+     "url": "https://cdn.freesound.org/previews/216/216095_3450800-hq.mp3",
+     "creator": "RICHERlandTV",
+     "license": "by",
+     "page": "https://freesound.org/people/RICHERlandTV/sounds/216095",
+     "seconds": 6.68
+    },
+    {
+     "n": 5,
+     "title": "Szept",
+     "original": "Creepy Whispering",
+     "url": "https://cdn.freesound.org/previews/234/234044_3795287-hq.mp3",
+     "creator": "RaspberryTickle",
+     "license": "cc0",
+     "page": "https://freesound.org/people/RaspberryTickle/sounds/234044",
+     "seconds": 4.09
+    },
+    {
+     "n": 6,
+     "title": "Szept 2",
+     "original": "'Ascend With Us' creepy whisper",
+     "url": "https://cdn.freesound.org/previews/171/171102_2121190-hq.mp3",
+     "creator": "BFMGames",
+     "license": "cc0",
+     "page": "https://freesound.org/people/BFMGames/sounds/171102",
+     "seconds": 3.7
+    },
+    {
+     "n": 7,
+     "title": "Serce",
+     "original": "Four Heartbeats HQ_BeatSmith.wav",
+     "url": "https://cdn.freesound.org/previews/22/22416_120830-hq.mp3",
+     "creator": "Lunardrive",
+     "license": "cc0",
+     "page": "https://freesound.org/people/Lunardrive/sounds/22416",
+     "seconds": 3.61
+    },
+    {
+     "n": 8,
+     "title": "Serce 2",
+     "original": "Single Heartbeat Clean HQ_BeatSmith.wav",
+     "url": "https://cdn.freesound.org/previews/22/22440_120830-hq.mp3",
+     "creator": "Lunardrive",
+     "license": "cc0",
+     "page": "https://freesound.org/people/Lunardrive/sounds/22440",
+     "seconds": 0.66
+    },
+    {
+     "n": 9,
+     "title": "Skrzyp drzwi",
+     "original": "Door - Creak 02.wav",
+     "url": "https://cdn.freesound.org/previews/219/219492_4056007-hq.mp3",
+     "creator": "JarredGibb",
+     "license": "cc0",
+     "page": "https://freesound.org/people/JarredGibb/sounds/219492",
+     "seconds": 1.4
+    },
+    {
+     "n": 10,
+     "title": "Skrzyp drzwi 2",
+     "original": "Wooden door creaking",
+     "url": "https://cdn.freesound.org/previews/367/367052_6090639-hq.mp3",
+     "creator": "TheBuilder15",
+     "license": "cc0",
+     "page": "https://freesound.org/people/TheBuilder15/sounds/367052",
+     "seconds": 3.38
+    },
+    {
+     "n": 11,
+     "title": "Łańcuchy",
+     "original": "Steel chain hard clicking",
+     "url": "https://cdn.freesound.org/previews/167/167916_3008343-hq.mp3",
+     "creator": "ani_music",
+     "license": "cc0",
+     "page": "https://freesound.org/people/ani_music/sounds/167916",
+     "seconds": 3.88
+    },
+    {
+     "n": 12,
+     "title": "Łańcuchy 2",
+     "original": "Chain pulley 750kg - Chain pull",
+     "url": "https://cdn.freesound.org/previews/386/386174_1655965-hq.mp3",
+     "creator": "ldezem",
+     "license": "cc0",
+     "page": "https://freesound.org/people/ldezem/sounds/386174",
+     "seconds": 1.74
+    },
+    {
+     "n": 13,
+     "title": "Horror",
+     "original": "spooky 02.mp3",
+     "url": "https://cdn.freesound.org/previews/651/651025_10522382-hq.mp3",
+     "creator": "nomiqbomi",
+     "license": "cc0",
+     "page": "https://freesound.org/people/nomiqbomi/sounds/651025",
+     "seconds": 4.06
+    },
+    {
+     "n": 14,
+     "title": "Horror 2",
+     "original": "Horror terror noise",
+     "url": "https://cdn.freesound.org/previews/580/580319_5487341-hq.mp3",
+     "creator": "SamsterBirdies",
+     "license": "cc0",
+     "page": "https://freesound.org/people/SamsterBirdies/sounds/580319",
+     "seconds": 4.51
+    },
+    {
+     "n": 15,
+     "title": "Wycie",
+     "original": "15-WolfCrying.wav",
+     "url": "https://cdn.freesound.org/previews/429/429109_7312716-hq.mp3",
+     "creator": "cazadordoblekatana",
+     "license": "cc0",
+     "page": "https://freesound.org/people/cazadordoblekatana/sounds/429109",
+     "seconds": 3.39
+    },
+    {
+     "n": 16,
+     "title": "Wycie 2",
+     "original": "22_Lobo_aullando.wav",
+     "url": "https://cdn.freesound.org/previews/472/472402_9934646-hq.mp3",
+     "creator": "JoseAgudelo",
+     "license": "cc0",
+     "page": "https://freesound.org/people/JoseAgudelo/sounds/472402",
+     "seconds": 4.51
+    }
+   ]
+  },
+  {
+   "id": "impreza",
+   "title": "Impreza",
+   "emoji": "🎉",
+   "sounds": [
+    {
+     "n": 1,
+     "title": "Róg",
+     "original": "Industrial Air Horn",
+     "url": "https://cdn.freesound.org/previews/131/131930_1542102-hq.mp3",
+     "creator": "mcpable",
+     "license": "cc0",
+     "page": "https://freesound.org/people/mcpable/sounds/131930",
+     "seconds": 2.57
+    },
+    {
+     "n": 2,
+     "title": "Róg 2",
+     "original": "Air Horn Hype.wav",
+     "url": "https://cdn.freesound.org/previews/581/581334_11304525-hq.mp3",
+     "creator": "zar.265",
+     "license": "cc0",
+     "page": "https://freesound.org/people/zar.265/sounds/581334",
+     "seconds": 2.75
+    },
+    {
+     "n": 3,
+     "title": "Scratch",
+     "original": "Record Scratch #4",
+     "url": "https://cdn.freesound.org/previews/431/431777_817038-hq.mp3",
+     "creator": "musicvision31",
+     "license": "cc0",
+     "page": "https://freesound.org/people/musicvision31/sounds/431777",
+     "seconds": 1.88
+    },
+    {
+     "n": 4,
+     "title": "Scratch 2",
+     "original": "Record Scratch #2",
+     "url": "https://cdn.freesound.org/previews/431/431773_817038-hq.mp3",
+     "creator": "musicvision31",
+     "license": "cc0",
+     "page": "https://freesound.org/people/musicvision31/sounds/431773",
+     "seconds": 1.88
+    },
+    {
+     "n": 5,
+     "title": "Trąbka imprezowa",
+     "original": "Party horn.wav",
+     "url": "https://cdn.freesound.org/previews/170/170583_1146698-hq.mp3",
+     "creator": "audiosmedia",
+     "license": "cc0",
+     "page": "https://freesound.org/people/audiosmedia/sounds/170583",
+     "seconds": 1.78
+    },
+    {
+     "n": 6,
+     "title": "Trąbka imprezowa 2",
+     "original": "Party Horn Room 06",
+     "url": "https://cdn.freesound.org/previews/713/713677_7020075-hq.mp3",
+     "creator": "Lucas_Schacht",
+     "license": "by",
+     "page": "https://freesound.org/people/Lucas_Schacht/sounds/713677",
+     "seconds": 2.11
+    },
+    {
+     "n": 7,
+     "title": "Balon",
+     "original": "Balloon Pop / Christmas cracker / Confetti Cannon",
+     "url": "https://cdn.freesound.org/previews/458/458398_9159316-hq.mp3",
+     "creator": "Breviceps",
+     "license": "cc0",
+     "page": "https://freesound.org/people/Breviceps/sounds/458398",
+     "seconds": 0.35
+    },
+    {
+     "n": 8,
+     "title": "Balon 2",
+     "original": "Balloon Pop",
+     "url": "https://cdn.freesound.org/previews/563/563197_9271584-hq.mp3",
+     "creator": "Lukeo135",
+     "license": "cc0",
+     "page": "https://freesound.org/people/Lukeo135/sounds/563197",
+     "seconds": 0.43
+    },
+    {
+     "n": 9,
+     "title": "Szampan",
+     "original": "Champagne Cork",
+     "url": "https://cdn.freesound.org/previews/392/392624_5440319-hq.mp3",
+     "creator": "KenRT",
+     "license": "cc0",
+     "page": "https://freesound.org/people/KenRT/sounds/392624",
+     "seconds": 0.67
+    },
+    {
+     "n": 10,
+     "title": "Szampan 2",
+     "original": "corkscrew mix",
+     "url": "https://cdn.freesound.org/previews/546/546935_5637404-hq.mp3",
+     "creator": "trezz77",
+     "license": "cc0",
+     "page": "https://freesound.org/people/trezz77/sounds/546935",
+     "seconds": 3.72
+    },
+    {
+     "n": 11,
+     "title": "Tłum",
+     "original": "Medium crowd cheering 02",
+     "url": "https://cdn.freesound.org/previews/400/400586_3372256-hq.mp3",
+     "creator": "misjoc",
+     "license": "cc0",
+     "page": "https://freesound.org/people/misjoc/sounds/400586",
+     "seconds": 7.4
+    },
+    {
+     "n": 12,
+     "title": "Tłum 2",
+     "original": "Short Crowd Cheer 2.flac",
+     "url": "https://cdn.freesound.org/previews/182/182572_71257-hq.mp3",
+     "creator": "qubodup",
+     "license": "cc0",
+     "page": "https://freesound.org/people/qubodup/sounds/182572",
+     "seconds": 7.69
+    },
+    {
+     "n": 13,
+     "title": "Bass drop",
+     "original": "Bass Drop Huge",
+     "url": "https://cdn.freesound.org/previews/231/231660_4183223-hq.mp3",
+     "creator": "david_werecat",
+     "license": "cc0",
+     "page": "https://freesound.org/people/david_werecat/sounds/231660",
+     "seconds": 7.0
+    },
+    {
+     "n": 14,
+     "title": "Bass drop 2",
+     "original": "Bass Drop - Nasty 001",
+     "url": "https://cdn.freesound.org/previews/169/169713_3126007-hq.mp3",
+     "creator": "GnoteSoundz",
+     "license": "cc0",
+     "page": "https://freesound.org/people/GnoteSoundz/sounds/169713",
+     "seconds": 5.11
+    },
+    {
+     "n": 15,
+     "title": "Rewers",
+     "original": "Reverse Mapex Ride.mp3",
+     "url": "https://cdn.freesound.org/previews/240/240712_3552082-hq.mp3",
+     "creator": "MarcusGraham325",
+     "license": "cc0",
+     "page": "https://freesound.org/people/MarcusGraham325/sounds/240712",
+     "seconds": 6.18
+    },
+    {
+     "n": 16,
+     "title": "Rewers 2",
+     "original": "reverse cymbal.wav",
+     "url": "https://cdn.freesound.org/previews/23/23127_135910-hq.mp3",
+     "creator": "John Rayson",
+     "license": "cc0",
+     "page": "https://freesound.org/people/John%20Rayson/sounds/23127",
+     "seconds": 2.0
+    }
+   ]
+  },
+  {
+   "id": "instrumenty",
+   "title": "Instrumenty",
+   "emoji": "🎹",
+   "sounds": [
+    {
+     "n": 1,
+     "title": "Pianino",
+     "original": "Hard piano note stereo saturated spooky",
+     "url": "https://cdn.freesound.org/previews/648/648902_8168385-hq.mp3",
+     "creator": "tusic99",
+     "license": "cc0",
+     "page": "https://freesound.org/people/tusic99/sounds/648902",
+     "seconds": 3.69
+    },
+    {
+     "n": 2,
+     "title": "Pianino 2",
+     "original": "Metal Piano Note, Wobbly Reverb",
+     "url": "https://cdn.freesound.org/previews/564/564264_1066178-hq.mp3",
+     "creator": "Herr Klaus",
+     "license": "cc0",
+     "page": "https://freesound.org/people/Herr%20Klaus/sounds/564264",
+     "seconds": 4.93
+    },
+    {
+     "n": 3,
+     "title": "Gitara",
+     "original": "A Guitar Chord Hit Percussion.wav",
+     "url": "https://cdn.freesound.org/previews/246/246281_2522406-hq.mp3",
+     "creator": "afleetingspeck",
+     "license": "cc0",
+     "page": "https://freesound.org/people/afleetingspeck/sounds/246281",
+     "seconds": 3.39
+    },
+    {
+     "n": 4,
+     "title": "Gitara 2",
+     "original": "E stacked 5ths guitar chord 120bpm.wav",
+     "url": "https://cdn.freesound.org/previews/46/46990_514283-hq.mp3",
+     "creator": "Sub-d",
+     "license": "cc0",
+     "page": "https://freesound.org/people/Sub-d/sounds/46990",
+     "seconds": 6.0
+    },
+    {
+     "n": 5,
+     "title": "Skrzypce",
+     "original": "Scary Violin Sounds",
+     "url": "https://cdn.freesound.org/previews/264/264495_4322723-hq.mp3",
+     "creator": "kickhat",
+     "license": "by",
+     "page": "https://freesound.org/people/kickhat/sounds/264495",
+     "seconds": 5.0
+    },
+    {
+     "n": 6,
+     "title": "Skrzypce 2",
+     "original": "violin scrapey.aiff",
+     "url": "https://cdn.freesound.org/previews/48/48684_187765-hq.mp3",
+     "creator": "nannygrimshaw",
+     "license": "by",
+     "page": "https://freesound.org/people/nannygrimshaw/sounds/48684",
+     "seconds": 3.0
+    },
+    {
+     "n": 7,
+     "title": "Trąbka",
+     "original": "Elephant Trumpets Growls.flac",
+     "url": "https://cdn.freesound.org/previews/527/527845_11431915-hq.mp3",
+     "creator": "D.jones",
+     "license": "cc0",
+     "page": "https://freesound.org/people/D.jones/sounds/527845",
+     "seconds": 2.0
+    },
+    {
+     "n": 8,
+     "title": "Trąbka 2",
+     "original": "Elephant voice - trumpeting",
+     "url": "https://upload.wikimedia.org/wikipedia/commons/4/40/Elephant_voice_-_trumpeting.ogg",
+     "creator": "தகவலுழவன்",
+     "license": "cc0",
+     "page": "https://commons.wikimedia.org/w/index.php?curid=12880761",
+     "seconds": 1.44
+    },
+    {
+     "n": 9,
+     "title": "Flet",
+     "original": "flute trill",
+     "url": "https://cdn.freesound.org/previews/376/376532_5781159-hq.mp3",
+     "creator": "womb_affliction",
+     "license": "by",
+     "page": "https://freesound.org/people/womb_affliction/sounds/376532",
+     "seconds": 5.95
+    },
+    {
+     "n": 10,
+     "title": "Flet 2",
+     "original": "NATIVE FLUTE FIGURE 05.wav",
+     "url": "https://cdn.freesound.org/previews/85/85794_14771-hq.mp3",
+     "creator": "sandyrb",
+     "license": "by",
+     "page": "https://freesound.org/people/sandyrb/sounds/85794",
+     "seconds": 3.47
+    },
+    {
+     "n": 11,
+     "title": "Gong",
+     "original": "Gong",
+     "url": "https://cdn.freesound.org/previews/157/157432_71257-hq.mp3",
+     "creator": "qubodup",
+     "license": "cc0",
+     "page": "https://freesound.org/people/qubodup/sounds/157432",
+     "seconds": 4.93
+    },
+    {
+     "n": 12,
+     "title": "Gong 2",
+     "original": "anime gong 1.wav",
+     "url": "https://cdn.freesound.org/previews/264/264047_3797507-hq.mp3",
+     "creator": "Logicogonist",
+     "license": "cc0",
+     "page": "https://freesound.org/people/Logicogonist/sounds/264047",
+     "seconds": 4.98
+    },
+    {
+     "n": 13,
+     "title": "Ksylofon",
+     "original": "Child's Xylophone 2",
+     "url": "https://cdn.freesound.org/previews/188/188045_3403708-hq.mp3",
+     "creator": "AntumDeluge",
+     "license": "cc0",
+     "page": "https://freesound.org/people/AntumDeluge/sounds/188045",
+     "seconds": 2.19
+    },
+    {
+     "n": 14,
+     "title": "Ksylofon 2",
+     "original": "Child's Xylophone 1",
+     "url": "https://cdn.freesound.org/previews/188/188040_3403708-hq.mp3",
+     "creator": "AntumDeluge",
+     "license": "cc0",
+     "page": "https://freesound.org/people/AntumDeluge/sounds/188040",
+     "seconds": 1.15
+    }
+   ]
+  },
+  {
+   "id": "ludzie",
+   "title": "Ludzie",
+   "emoji": "🗣️",
+   "sounds": [
+    {
+     "n": 1,
+     "title": "Pstryk",
+     "original": "Percussion Snap",
+     "url": "https://cdn.freesound.org/previews/272/272114_2898142-hq.mp3",
+     "creator": "purpleducttapehat",
+     "license": "cc0",
+     "page": "https://freesound.org/people/purpleducttapehat/sounds/272114",
+     "seconds": 1.55
+    },
+    {
+     "n": 2,
+     "title": "Pstryk 2",
+     "original": "Snap Fingers.wav",
+     "url": "https://cdn.freesound.org/previews/119/119147_1990695-hq.mp3",
+     "creator": "esperri",
+     "license": "cc0",
+     "page": "https://freesound.org/people/esperri/sounds/119147",
+     "seconds": 0.62
+    },
+    {
+     "n": 3,
+     "title": "Kaszel",
+     "original": "Cough Female",
+     "url": "https://cdn.freesound.org/previews/151/151213_140737-hq.mp3",
+     "creator": "OwlStorm",
+     "license": "cc0",
+     "page": "https://freesound.org/people/OwlStorm/sounds/151213",
+     "seconds": 1.11
+    },
+    {
+     "n": 4,
+     "title": "Kaszel 2",
+     "original": "Cough",
+     "url": "https://cdn.freesound.org/previews/204/204604_3439254-hq.mp3",
+     "creator": "pikachu09",
+     "license": "cc0",
+     "page": "https://freesound.org/people/pikachu09/sounds/204604",
+     "seconds": 2.41
+    },
+    {
+     "n": 5,
+     "title": "Kichnięcie",
+     "original": "sneeze",
+     "url": "https://cdn.freesound.org/previews/185/185619_1083532-hq.mp3",
+     "creator": "organicmanpl",
+     "license": "cc0",
+     "page": "https://freesound.org/people/organicmanpl/sounds/185619",
+     "seconds": 3.12
+    },
+    {
+     "n": 6,
+     "title": "Kichnięcie 2",
+     "original": "Sneeze 02.aiff",
+     "url": "https://cdn.freesound.org/previews/167/167641_1868848-hq.mp3",
+     "creator": "SoundCollectah",
+     "license": "cc0",
+     "page": "https://freesound.org/people/SoundCollectah/sounds/167641",
+     "seconds": 1.8
+    },
+    {
+     "n": 7,
+     "title": "Całus",
+     "original": "Short kiss",
+     "url": "https://cdn.freesound.org/previews/344/344209_91362-hq.mp3",
+     "creator": "Vospi",
+     "license": "cc0",
+     "page": "https://freesound.org/people/Vospi/sounds/344209",
+     "seconds": 0.21
+    },
+    {
+     "n": 8,
+     "title": "Całus 2",
+     "original": "Kiss 12.wav",
+     "url": "https://cdn.freesound.org/previews/166/166153_2104797-hq.mp3",
+     "creator": "deleted_user_2104797",
+     "license": "cc0",
+     "page": "https://freesound.org/people/deleted_user_2104797/sounds/166153",
+     "seconds": 1.74
+    },
+    {
+     "n": 9,
+     "title": "Beknięcie",
+     "original": "Burp Monster Zombie groan moan",
+     "url": "https://cdn.freesound.org/previews/463/463721_1106446-hq.mp3",
+     "creator": "EricsSoundschmiede",
+     "license": "cc0",
+     "page": "https://freesound.org/people/EricsSoundschmiede/sounds/463721",
+     "seconds": 2.79
+    },
+    {
+     "n": 10,
+     "title": "Beknięcie 2",
+     "original": "Loud Burp",
+     "url": "https://cdn.freesound.org/previews/214/214451_3201007-hq.mp3",
+     "creator": "AquaChannel",
+     "license": "cc0",
+     "page": "https://freesound.org/people/AquaChannel/sounds/214451",
+     "seconds": 0.89
+    },
+    {
+     "n": 11,
+     "title": "Ziewanie",
+     "original": "Yawn Male",
+     "url": "https://cdn.freesound.org/previews/364/364695_2531187-hq.mp3",
+     "creator": "alegemaate",
+     "license": "cc0",
+     "page": "https://freesound.org/people/alegemaate/sounds/364695",
+     "seconds": 0.86
+    },
+    {
+     "n": 12,
+     "title": "Ziewanie 2",
+     "original": "Yawning 2",
+     "url": "https://cdn.freesound.org/previews/566/566324_10435241-hq.mp3",
+     "creator": "njjjjjjjjjjjjjjjjjjjjjjjj",
+     "license": "cc0",
+     "page": "https://freesound.org/people/njjjjjjjjjjjjjjjjjjjjjjjj/sounds/566324",
+     "seconds": 3.02
+    },
+    {
+     "n": 13,
+     "title": "Dziecko",
+     "original": "Furby Baby Laugh",
+     "url": "https://cdn.freesound.org/previews/722/722365_12447505-hq.mp3",
+     "creator": "chinyyyere",
+     "license": "cc0",
+     "page": "https://freesound.org/people/chinyyyere/sounds/722365",
+     "seconds": 5.5
+    },
+    {
+     "n": 14,
+     "title": "Dziecko 2",
+     "original": "babygiggle.mp3",
+     "url": "https://cdn.freesound.org/previews/458/458645_6996390-hq.mp3",
+     "creator": "jamesmbock",
+     "license": "cc0",
+     "page": "https://freesound.org/people/jamesmbock/sounds/458645",
+     "seconds": 1.87
+    }
+   ]
+  }
+ ],
+ "starter": [
+  {
+   "board": "perkusja",
+   "n": 1
+  },
+  {
+   "board": "perkusja",
+   "n": 3
+  },
+  {
+   "board": "perkusja",
+   "n": 5
+  },
+  {
+   "board": "perkusja",
+   "n": 7
+  },
+  {
+   "board": "impreza",
+   "n": 1
+  },
+  {
+   "board": "impreza",
+   "n": 3
+  },
+  {
+   "board": "reakcje",
+   "n": 1
+  },
+  {
+   "board": "reakcje",
+   "n": 3
+  },
+  {
+   "board": "filmowe",
+   "n": 1
+  },
+  {
+   "board": "filmowe",
+   "n": 3
+  },
+  {
+   "board": "scifi",
+   "n": 1
+  },
+  {
+   "board": "retro",
+   "n": 1
+  },
+  {
+   "board": "pojazdy",
+   "n": 3
+  },
+  {
+   "board": "zwierzeta",
+   "n": 1
+  },
+  {
+   "board": "impreza",
+   "n": 13
+  },
+  {
+   "board": "filmowe",
+   "n": 5
+  }
+ ]
+}

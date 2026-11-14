@@ -3,3 +3,4 @@ Support/Info.plist
 build/
 *.ipa
 *.log
+tools/.boards_cache.json

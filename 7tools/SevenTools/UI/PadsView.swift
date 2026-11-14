@@ -31,6 +31,7 @@ struct PadsView: View {
     private var content: some View {
         VStack(spacing: 16) {
             header
+            StarterBanner()
             bankPicker
             grid
             if pads.editing {

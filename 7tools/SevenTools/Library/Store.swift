@@ -171,9 +171,8 @@ enum Openverse {
     // pobiera plik do pamieci i dekoduje. Max ok. 8 MB.
     static func download(_ s: OVSound) async throws -> SampleBuffer {
         guard let url = URL(string: s.url) else { throw URLError(.badURL) }
-        var req = URLRequest(url: url, timeoutInterval: 30)
-        req.setValue("7Tools", forHTTPHeaderField: "User-Agent")
-        let (tmp, resp) = try await URLSession.shared.download(for: req)
+        // domyslny User-Agent systemu, bez wlasnych naglowkow
+        let (tmp, resp) = try await URLSession.shared.download(from: url)
         guard (resp as? HTTPURLResponse)?.statusCode == 200 else { throw URLError(.badServerResponse) }
         let size = (try? FileManager.default.attributesOfItem(atPath: tmp.path)[.size] as? Int) ?? 0
         guard size < 8_000_000 else { throw URLError(.dataLengthExceedsMaximum) }

@@ -8,6 +8,7 @@ struct SevenToolsApp: App {
     @StateObject private var motion: MotionHub
     @StateObject private var location = LocationHub()
     @StateObject private var gestures: GestureCenter
+    @StateObject private var boards: BoardsModel
     @StateObject private var updates = UpdateChecker()
     @AppStorage("updateCheck") private var autoCheck = true
     @State private var showSplash = true
@@ -22,6 +23,7 @@ struct SevenToolsApp: App {
         _pads = StateObject(wrappedValue: p)
         _motion = StateObject(wrappedValue: m)
         _gestures = StateObject(wrappedValue: GestureCenter(motion: m, hub: h, pads: p, store: s))
+        _boards = StateObject(wrappedValue: BoardsModel(hub: h, store: s, pads: p))
     }
 
     var body: some Scene {
@@ -34,6 +36,7 @@ struct SevenToolsApp: App {
                     .environmentObject(motion)
                     .environmentObject(location)
                     .environmentObject(gestures)
+                    .environmentObject(boards)
                     .environmentObject(updates)
                     .overlay(alignment: .top) {
                         UpdateBanner().environmentObject(updates)
@@ -51,6 +54,10 @@ struct SevenToolsApp: App {
             .tint(Theme.gold)
             .task {
                 if autoCheck { await updates.check() }
+            }
+            .task {
+                await boards.refreshCatalog()
+                await boards.installStarterIfNeeded()
             }
         }
     }
