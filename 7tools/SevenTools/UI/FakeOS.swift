@@ -83,21 +83,97 @@ enum FakeApp: String, CaseIterable, Identifiable {
     static let dock: [FakeApp] = [.phone, .safari, .messages, .settings]
 }
 
+// Co pokazuje falszywy system o telefonie. Mozna to zmienic przed startem psikusa albo w Ogolne > Informacje.
+enum FakeDeviceInfo {
+    static let models = ["iPhone 17 Pro Max", "iPhone 17", "iPhone 16 Pro", "iPhone 16", "iPhone 15 Pro", "iPhone 14", "iPhone 13 mini",
+                         "iPhone 12", "iPhone 11", "iPhone X", "iPhone SE (2. generacji)", "iPhone 8", "iPhone 6s", "iPhone 4",
+                         "iPhone 99 Ultra Mega Pro"]
+    static let versions = ["26.1", "26.0", "18.7", "17.6", "16.7", "15.8", "14.8", "13.7", "12.5", "9.3.5", "7.1", "99.9"]
+    static let capacities = ["16 GB", "64 GB", "128 GB", "256 GB", "512 GB", "1 TB", "1 PB"]
+    static let wallpapers: [(String, [Color])] = [
+        ("Zachód", [Color(red: 0.1, green: 0.3, blue: 0.7), Color(red: 0.5, green: 0.2, blue: 0.6), Color(red: 0.9, green: 0.4, blue: 0.3)]),
+        ("Noc", [Color(red: 0.02, green: 0.02, blue: 0.15), Color(red: 0.1, green: 0.05, blue: 0.3)]),
+        ("Las", [Color(red: 0.05, green: 0.3, blue: 0.2), Color(red: 0.0, green: 0.15, blue: 0.1)]),
+        ("Cukierek", [Color(red: 1.0, green: 0.4, blue: 0.7), Color(red: 0.4, green: 0.7, blue: 1.0)]),
+    ]
+
+    static func next(after v: String) -> String {
+        let parts = v.split(separator: ".").compactMap { Int($0) }
+        guard parts.count >= 2 else { return "99.9" }
+        return "\(parts[0]).\(parts[1] + 1)"
+    }
+}
+
+struct FakeOSOptions: View {
+    @AppStorage("fake.model") private var model = "iPhone 17 Pro Max"
+    @AppStorage("fake.ios") private var ios = "26.1"
+    @AppStorage("fake.name") private var name = "iPhone"
+    @AppStorage("fake.capacity") private var capacity = "256 GB"
+    @AppStorage("fake.battery") private var battery = 73.0
+    @AppStorage("fake.wall") private var wall = 0
+    @AppStorage("fake.timeOn") private var timeOn = false
+    @AppStorage("fake.time") private var time = 0.0
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Text("Jaki to telefon").spaced(.subheadline, .bold)
+            Picker("Model", selection: $model) { ForEach(FakeDeviceInfo.models, id: \.self) { Text($0).tag($0) } }
+            Picker("Wersja iOS", selection: $ios) { ForEach(FakeDeviceInfo.versions, id: \.self) { Text("iOS \($0)").tag($0) } }
+            Picker("Pojemność", selection: $capacity) { ForEach(FakeDeviceInfo.capacities, id: \.self) { Text($0).tag($0) } }
+            TextField("Nazwa telefonu", text: $name).padding(8).glassEffect(.regular, in: .capsule)
+            SliderRow(symbol: "battery.50percent", title: "Bateria", value: $battery, range: 1...100, step: 1) { "\(Int($0))%" }
+            Picker("Tapeta", selection: $wall) { ForEach(0..<FakeDeviceInfo.wallpapers.count, id: \.self) { Text(FakeDeviceInfo.wallpapers[$0].0).tag($0) } }
+            Toggle("Własna godzina na pasku", isOn: $timeOn)
+            if timeOn {
+                DatePicker("Godzina", selection: Binding(get: { Date(timeIntervalSince1970: time) }, set: { time = $0.timeIntervalSince1970 }),
+                           displayedComponents: .hourAndMinute)
+            }
+        }
+    }
+}
+
+// Ogolne > Informacje: model, wersja i reszta do zmiany dotknieciem
+struct FakeAbout: View {
+    @AppStorage("fake.model") private var model = "iPhone 17 Pro Max"
+    @AppStorage("fake.ios") private var ios = "26.1"
+    @AppStorage("fake.name") private var name = "iPhone"
+    @AppStorage("fake.capacity") private var capacity = "256 GB"
+
+    var body: some View {
+        List {
+            HStack { Text("Nazwa"); Spacer(); TextField("Nazwa", text: $name).multilineTextAlignment(.trailing).foregroundStyle(.secondary) }
+            Picker("Wersja iOS", selection: $ios) { ForEach(FakeDeviceInfo.versions, id: \.self) { Text($0).tag($0) } }
+            Picker("Nazwa modelu", selection: $model) { ForEach(FakeDeviceInfo.models, id: \.self) { Text($0).tag($0) } }
+            Picker("Pojemność", selection: $capacity) { ForEach(FakeDeviceInfo.capacities, id: \.self) { Text($0).tag($0) } }
+            HStack { Text("Numer seryjny"); Spacer(); Text("F2LXJ4KP7Q").foregroundStyle(.secondary) }
+            HStack { Text("Gwarancja"); Spacer(); Text("Skończyła się wczoraj").foregroundStyle(.secondary) }
+            Text("To jest żart. Dotknij pola, żeby zmienić model, wersję i resztę.").spaced(.footnote).foregroundStyle(.secondary)
+        }
+        .navigationTitle("Informacje")
+        .navigationBarTitleDisplayMode(.inline)
+    }
+}
+
 struct FakeOSHome: View {
+    @AppStorage("fake.battery") private var battery = 73.0
+    @AppStorage("fake.wall") private var wall = 0
+    @AppStorage("fake.timeOn") private var timeOn = false
+    @AppStorage("fake.time") private var customTime = 0.0
     @State private var open: FakeApp?
     @State private var page = 0
     @State private var hint = false
 
     var body: some View {
         ZStack {
-            LinearGradient(colors: [Color(red: 0.1, green: 0.3, blue: 0.7), Color(red: 0.5, green: 0.2, blue: 0.6), Color(red: 0.9, green: 0.4, blue: 0.3)],
+            LinearGradient(colors: FakeDeviceInfo.wallpapers[min(max(wall, 0), FakeDeviceInfo.wallpapers.count - 1)].1,
                            startPoint: .topLeading, endPoint: .bottomTrailing)
             VStack(spacing: 0) {
                 HStack {
-                    Text(Date.now.formatted(date: .omitted, time: .shortened)).spaced(.footnote, .bold)
+                    Text((timeOn ? Date(timeIntervalSince1970: customTime) : Date.now).formatted(date: .omitted, time: .shortened)).spaced(.footnote, .bold)
                     Spacer()
                     Image(systemName: "wifi")
-                    Image(systemName: "battery.100percent")
+                    Text("\(Int(battery))%").spaced(.caption2, .bold)
+                    Image(systemName: battery > 75 ? "battery.100percent" : (battery > 40 ? "battery.50percent" : "battery.25percent"))
                 }
                 .padding(.horizontal, 30).padding(.top, 14)
 
@@ -210,6 +286,7 @@ struct SetRow: Identifiable {
     var detail: [(String, String)] = []
     var note = ""
     var update = false
+    var about = false
 }
 
 struct FakeSettings: View {
@@ -238,9 +315,7 @@ struct FakeSettings: View {
          SetRow(symbol: "hourglass", color: .indigo, title: "Czas przed ekranem", value: "23 godz. 59 min",
                 detail: [("Dziś", "23 godz. 59 min"), ("Najczęściej", "Ten ekran"), ("Limit", "Tak, ale go zignorowałeś")])]
 
-    private static let g3: [SetRow] = [SetRow(symbol: "gearshape.fill", color: .gray, title: "Ogólne", value: "",
-                detail: [("Nazwa", "Fałszywy iOS"), ("Wersja", "99.9 (nieprawdziwa)"), ("Model", "Telefon Ultra Mega Pro Max"), ("Pojemność", "1 PB (ale zajęte 1 PB)"),
-                         ("Numer seryjny", "NIEPRAWDA-123"), ("Gwarancja", "Skończyła się wczoraj")]),
+    private static let g3: [SetRow] = [SetRow(symbol: "gearshape.fill", color: .gray, title: "Ogólne", value: "", about: true),
          SetRow(symbol: "arrow.down.circle.fill", color: .blue, title: "Aktualizacja oprogramowania", value: "1", update: true),
          SetRow(symbol: "battery.100percent", color: .green, title: "Bateria", value: "3%",
                 detail: [("Stan baterii", "3% (z 100%)"), ("Ładowanie", "Nadzieją"), ("Zużycie", "Ten ekran: 100%")]),
@@ -266,6 +341,8 @@ struct FakeSettings: View {
                         ForEach(sections[si]) { r in
                             if r.update {
                                 Button { showUpdate = true } label: { rowLabel(r) }.buttonStyle(.plain)
+                            } else if r.about {
+                                NavigationLink { FakeAbout() } label: { rowLabel(r) }
                             } else if r.value == "off" || r.value == "on" {
                                 ToggleRow(row: r)
                             } else {
@@ -351,6 +428,7 @@ struct FakeSettings: View {
 
 struct UpdateOffer: View {
     @Environment(\.dismiss) private var dismiss
+    @AppStorage("fake.ios") private var ios = "26.1"
     @State private var install = false
 
     var body: some View {
@@ -361,7 +439,7 @@ struct UpdateOffer: View {
             } else {
                 VStack(spacing: 18) {
                     Image(systemName: "arrow.down.circle.fill").font(.system(size: 60)).foregroundStyle(.blue)
-                    Text("Fałszywy iOS 99.9").font(.system(size: 28, weight: .bold))
+                    Text("iOS \(FakeDeviceInfo.next(after: ios))").font(.system(size: 28, weight: .bold))
                     Text("Rozmiar: 128 GB. Nowości: nic nie działa, ale ładnie. Błędy zostały dodane celowo.")
                         .spaced(.subheadline).foregroundStyle(.secondary).multilineTextAlignment(.center)
                     Button("Pobierz i zainstaluj") { install = true }.buttonStyle(.glassProminent).tint(.blue)

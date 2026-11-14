@@ -5,7 +5,7 @@ import AVFoundation
 // Wyjscie z kazdego: 5 razy dotknij lewy gorny rog.
 
 enum Prank: String, CaseIterable, Identifiable {
-    case update, demo, fakeOS, evil, spider, fly, crack, call, battery
+    case update, demo, fakeOS, bank, evil, spider, fly, crack, call, battery
 
     var id: String { rawValue }
 
@@ -14,6 +14,7 @@ enum Prank: String, CaseIterable, Identifiable {
         case .update: return "Aktualizacja systemu"
         case .demo: return "Tryb demo"
         case .fakeOS: return "Fałszywy iOS"
+        case .bank: return "Bank Kasztan (parodia)"
         case .evil: return "Evil iOS"
         case .spider: return "Pająk na ekranie"
         case .fly: return "Mucha"
@@ -27,7 +28,8 @@ enum Prank: String, CaseIterable, Identifiable {
         switch self {
         case .update: return "Pasek postępu, który nigdy nie dochodzi do końca"
         case .demo: return "Telefon \"ze sklepu\", z którego nie da się wyjść"
-        case .fakeOS: return "Prawie jak prawdziwy: ekran główny, Ustawienia i apki systemowe z głupimi wartościami"
+        case .fakeOS: return "Prawie jak prawdziwy: wybierasz model i wersję iOS, są Ustawienia i apki systemowe"
+        case .bank: return "Wymyślony bank z napisem PARODIA: edytowalne imię, saldo i zabawne transakcje"
         case .evil: return "Zły system z Evil Safari, Evil Siri i kalkulatorem, który kłamie"
         case .spider: return "Pająk chodzi po ekranie. Da się go zgnieść"
         case .fly: return "Bzyczy i lata po ekranie"
@@ -42,6 +44,7 @@ enum Prank: String, CaseIterable, Identifiable {
         case .update: return "arrow.down.circle.fill"
         case .demo: return "storefront.fill"
         case .fakeOS: return "iphone.gen3"
+        case .bank: return "banknote.fill"
         case .evil: return "flame.fill"
         case .spider: return "ladybug.fill"
         case .fly: return "ant.fill"
@@ -56,6 +59,7 @@ enum Prank: String, CaseIterable, Identifiable {
         case .update: return .blue
         case .demo: return .orange
         case .fakeOS: return .blue
+        case .bank: return .brown
         case .evil: return .red
         case .spider: return .purple
         case .fly: return .green
@@ -141,6 +145,7 @@ struct PrankRunner: View {
         case .update: FakeUpdate()
         case .demo: DemoMode()
         case .fakeOS: FakeOSHome()
+        case .bank: FakeBank()
         case .evil: EvilHome()
         case .spider: BugScreen(kind: .spider)
         case .fly: BugScreen(kind: .fly)
@@ -153,8 +158,9 @@ struct PrankRunner: View {
     private var setup: some View {
         ZStack {
             Backdrop()
+            ScrollView {
             VStack(spacing: 18) {
-                Spacer()
+                Spacer(minLength: 30)
                 Image(systemName: prank.symbol).font(.system(size: 54, weight: .semibold))
                     .frame(width: 120, height: 120)
                     .glassEffect(.regular.tint(prank.tint.opacity(0.5)), in: .circle)
@@ -169,6 +175,7 @@ struct PrankRunner: View {
                             TextField("Co powie po odebraniu", text: $callPhrase, axis: .vertical)
                                 .lineLimit(2...4).padding(10).glassEffect(.regular, in: .rect(cornerRadius: 18))
                         }
+                        if prank == .fakeOS { FakeOSOptions() }
                         Toggle(isOn: $dim) { Label("Przyciemnij ekran", systemImage: "sun.min.fill") }
                     }
                 }
@@ -179,9 +186,11 @@ struct PrankRunner: View {
                     Button("Start") { start() }.buttonStyle(.glassProminent).tint(Theme.gold)
                 }
                 .controlSize(.large)
-                Spacer()
+                Spacer(minLength: 30)
             }
             .padding(.horizontal, 24)
+            }
+            .scrollIndicators(.hidden)
         }
     }
 
