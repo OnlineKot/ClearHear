@@ -10,9 +10,9 @@ Mikrofon idzie przez `AVAudioSinkNode` do własnego procesora (`HearNow/Voice.sw
 2. Śledzenie szumu osobno w każdym paśmie (szybko w dół, wolno w górę) i odjęcie go filtrem Wienera z "decision directed", żeby nie było "brzęczenia" po odszumieniu.
 3. Krzywa pod głos: odcięcie poniżej 70 Hz, lekkie odmulenie 250 Hz, podbicie około 2,8 kHz (tam siedzą spółgłoski) i ucięcie syku powyżej 6 kHz.
 4. Bramka między zdaniami: gdy w paśmie 300 do 3400 Hz nie ma nic wyraźnie ponad tłem, przycina jeszcze do 8 dB.
-5. FFT w drugą stronę, auto-poziom (podciąga cichy głos, tylko gdy ktoś mówi), limiter na 0,85 i twardy sufit 0,95 dla bezpieczeństwa uszu.
+5. FFT w drugą stronę, wyrównywanie głośności (cichy głos jest podciągany, głośny przycinany, suwak ustawia docelowy poziom), limiter i miękki sufit 0,6, a po starcie głośność narasta przez pół sekundy. Okrzyk nie bije po uszach, a szept nie ginie.
 
-Suwaki: **Głośność** (0 do +24 dB), **Odszumianie** (siła i głębokość), **Wyrazistość głosu** (siła podbicia). Cztery gotowe ustawienia: Rozmowa, Tłum, Z daleka, Cisza.
+Suwaki: **Głośność** (docelowy poziom, 0 do +24 dB), **Odszumianie** (siła i głębokość), **Wyrazistość głosu** (siła podbicia). Cztery gotowe ustawienia: Rozmowa, Tłum, Z daleka, Cisza.
 
 W ustawieniach wybierasz mikrofon (dolny, przedni, tylny) i czy ma być kierunkowy. Kieruje się go na rozmówcę.
 

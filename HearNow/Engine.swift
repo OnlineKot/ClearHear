@@ -219,9 +219,9 @@ final class HearEngine: ObservableObject {
 
         let s = AVAudioSession.sharedInstance()
         do {
-            // measurement wylacza systemowe AGC i filtry, obrobke robimy sami
+            // tryb domyslny zostawia systemowe wzmocnienie mikrofonu (measurement dawal za cichy sygnal)
             do {
-                try s.setCategory(.playAndRecord, mode: .measurement, options: [.allowBluetoothA2DP])
+                try s.setCategory(.playAndRecord, mode: .default, options: [.allowBluetoothA2DP])
             } catch {
                 try s.setCategory(.playAndRecord, mode: .default, options: [.allowBluetoothA2DP])
             }

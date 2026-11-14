@@ -215,8 +215,45 @@ struct Check {
             for i in 0..<x.count { x[i] = 0.9 * sinf(2 * .pi * 440 * Float(i) / rate) }
             let y = run(x, knobs: k)
             let peak = y.map { abs($0) }.max() ?? 0
-            check(peak <= 0.951, "szczyt \(peak) nie przekracza 0,95")
+            check(peak <= 0.601, "szczyt \(peak) nie przekracza 0,6 (sufit przy sluchawkach)")
             check(!y.contains { $0.isNaN }, "bez NaN")
+        }
+
+
+        // 5b. glosnosc: cichy szept i krzyk maja wyjsc w podobnym poziomie, bez huku
+        print("Wyrownywanie glosnosci")
+        do {
+            func words(scale: Float, noiseLvl: Float) -> (outRms: Float, peak: Float, inRms: Float) {
+                var r = Rng()
+                let (sp, act) = speechSignal(seconds: 14, rng: &r)
+                let nz = pinkish(sp.count, rng: &r, level: noiseLvl)
+                var x = sp
+                for i in 0..<x.count { x[i] = x[i] * scale + nz[i] }
+                let k = Knobs()
+                k.gainDB = 9; k.denoise = 0.6; k.clarity = 0.6; k.auto = true
+                let y = run(x, knobs: k)
+                var word = [Int]()
+                for i in Int(rate * 4)..<min(y.count, act.count) where act[i] { word.append(i) }
+                let pk = y.map { abs($0) }.max() ?? 0
+                return (rms(y, word), pk, rms(x, word))
+            }
+            let quiet = words(scale: 0.08, noiseLvl: 0.0004)
+            let normal = words(scale: 1, noiseLvl: 0.004)
+            let shout = words(scale: 6, noiseLvl: 0.004)
+            print(String(format: "  wejscie: %.4f / %.4f / %.4f  wyjscie: %.3f / %.3f / %.3f  szczyt: %.2f", quiet.inRms, normal.inRms, shout.inRms, quiet.outRms, normal.outRms, shout.outRms, shout.peak))
+            check(db(shout.inRms, quiet.inRms) > 30, "wejscia roznia sie o \(db(shout.inRms, quiet.inRms)) dB")
+            check(db(shout.outRms, quiet.outRms) < 12, "wyjscia roznia sie o \(db(shout.outRms, quiet.outRms)) dB (poniżej 12)")
+            check(quiet.outRms > 0.015, "szept jest slyszalny (rms \(quiet.outRms))")
+            check(shout.outRms < 0.2 && shout.peak <= 0.601, "krzyk nie bije po uszach (rms \(shout.outRms), szczyt \(shout.peak))")
+
+            // plynne wejscie po starcie
+            let k = Knobs()
+            k.gainDB = 9; k.auto = true
+            var x = [Float](repeating: 0, count: Int(rate * 3))
+            for i in 0..<x.count { x[i] = 0.3 * sinf(2 * .pi * 300 * Float(i) / rate) }
+            let y = run(x, knobs: k)
+            let first = rms(y, Array(0..<4800)), later = rms(y, Array(Int(rate * 2)..<(y.count - 10)))
+            check(first < later * 0.5, "pierwsze 0,1 s jest cichsze niz pozniej (\(first) vs \(later))")
         }
 
         // 6. cisza i pelna cisza cyfrowa nie psuja niczego

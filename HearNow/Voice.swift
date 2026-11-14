@@ -180,7 +180,8 @@ final class VoiceDSP {
     private var speech: Float = 0
     private var env: Float = 0.05
     private var agc: Float = 1
-    private var gSm: Float = 1
+    private var gSm: Float = 0
+    private var fade: Float = 0
     private var lim: Float = 1
     private var redAvg: Float = 0
 
@@ -319,7 +320,7 @@ final class VoiceDSP {
     // Szum, wzmocnienia, bramka. Zmienia re i im.
     private func shape(_ d: Float) {
         let beta = 1 + 2.2 * d
-        let floorG = powf(10, -(8 + 20 * d) / 20)
+        let floorG = powf(10, -(6 + 14 * d) / 20)
         let bias: Float = 1.5
         let eps: Float = 1e-12
 
@@ -373,8 +374,8 @@ final class VoiceDSP {
         } else {
             speech += 0.02 * (inst - speech)
         }
-        // miedzy zdaniami przycinamy jeszcze troche (do -8 dB przy pelnym odszumianiu)
-        let gateFloor = powf(10, -(8 * d) / 20)
+        // miedzy zdaniami przycinamy jeszcze troche (do -4 dB przy pelnym odszumianiu)
+        let gateFloor = powf(10, -(4 * d) / 20)
         let gate = gateFloor + (1 - gateFloor) * speech
 
         for i in 0..<Meters.bands {
@@ -414,37 +415,50 @@ final class VoiceDSP {
 
     // ---------------------------------------------------------------- poziom i limiter
 
+    // Wyrownywanie glosnosci. Cichy dzwiek jest podciagany, glosny przycinany, a suwak "Glosnosc"
+    // ustawia docelowy poziom, nie gole wzmocnienie. Dzieki temu okrzyk nie bije po uszach,
+    // a szept nie ginie. Szczyty nigdy nie przekraczaja `ceiling`.
+    static let ceiling: Float = 0.5
+
     private func levels(inSq: Float) {
         var sq: Float = 0
         for i in 0..<hop { sq += hopOut[i] * hopOut[i] }
         let rms = (sq / Float(hop)).squareRoot()
 
-        // auto-poziom: dociaga cichy glos do ok. -26 dBFS, ale tylko gdy ktos mowi,
-        // zeby nie podkrecac szumu miedzy zdaniami
-        if speech > 0.5 { env += 0.08 * (rms - env) }
-        var want: Float = 1
-        if knobs.auto { want = min(max(0.05 / max(env, 1e-4), 0.5), 4) }
-        if speech > 0.5 || want == 1 {
-            agc += 0.02 * (want - agc)
-        } else {
-            agc += 0.0005 * (1 - agc)
-        }
+        // detektor: szybko w gore (glos), wolno w dol (okolo pol sekundy)
+        if rms > env { env += 0.6 * (rms - env) } else { env += 0.012 * (rms - env) }
+        env = max(env, 0.0002)
 
-        let target = powf(10, knobs.gainDB / 20) * agc
-        let ceiling: Float = 0.85
+        let user = powf(10, knobs.gainDB / 20)
+        var gain: Float
+        if knobs.auto {
+            // cel: 0,03 przy 0 dB, ok. 0,085 przy 9 dB, nie wiecej niz 0,2
+            let target = min(0.2, 0.03 * user)
+            // podciaganie ma limit, a w ciszy mniejszy, zeby nie robic z szumu halasu
+            let maxGain = 6 + 10 * speech
+            gain = min(max(target / env, 0.25), maxGain)
+        } else {
+            gain = user
+        }
+        agc += 0.25 * (gain - agc)
+
+        let ceiling = Self.ceiling
         var outSq: Float = 0
         for i in 0..<hop {
-            gSm += 0.003 * (target - gSm)
+            // plynne wejscie po starcie, zeby nie bylo huku w pierwszej chwili
+            if fade < 1 { fade = min(1, fade + 1 / Float(rate * 0.5)) }
+            gSm += 0.01 * (agc * fade - gSm)
             var y = hopOut[i] * gSm
             let a = abs(y)
             let need: Float = a > ceiling ? ceiling / a : 1
             if need < lim {
                 lim += 0.6 * (need - lim)
             } else {
-                lim += 0.0003 * (1 - lim)
+                lim += 0.0004 * (1 - lim)
             }
             y *= lim
-            y = min(0.95, max(-0.95, y))
+            // miekki sufit: nawet gdyby limiter sie spoznil, nie wyjdzie ponad 0,6
+            y = 0.6 * tanhf(y / 0.6)
             hopOut[i] = y
             outSq += y * y
         }
