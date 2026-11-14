@@ -12,7 +12,7 @@ site = site.rstrip("/")
 
 update = {
     "app": "7tools",
-    "name": "SevenTools",
+    "name": "007Tools",
     "version": version,
     "build": int(build),
     "date": date,

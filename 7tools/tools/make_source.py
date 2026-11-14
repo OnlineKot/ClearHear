@@ -12,13 +12,13 @@ icon = f"{site}/7tools/icons/icon-512.png"
 ipa = f"{site}/7tools/install/SevenTools.ipa"
 
 app = {
-    "name": "SevenTools",
+    "name": "007Tools",
     "bundleIdentifier": "pl.fastlink.seventools",
     "developerName": "FastLink",
-    "subtitle": "Słyszysz wyraźniej",
-    "localizedDescription": "Mikrofon telefonu na żywo w słuchawkach. Odszumia i podbija głos, działa w tle.",
+    "subtitle": "Pętle, pady, sampler",
+    "localizedDescription": "Looper, soundboard z biblioteką dźwięków z internetu, sampler, efekty głosu, stroik i inne narzędzia dźwiękowe.",
     "iconURL": icon,
-    "tintColor": "0A84FF",
+    "tintColor": "E0B84D",
     "screenshotURLs": [],
     # nowy format (AltStore 2, SideStore)
     "versions": [{
@@ -38,14 +38,14 @@ app = {
 }
 
 source = {
-    "name": "FastLink SevenTools",
+    "name": "FastLink 007Tools",
     "identifier": "pl.fastlink.seventools.source",
     "sourceURL": f"{site}/7tools/install/source.json",
-    "subtitle": "SevenTools",
-    "description": "Źródło z aplikacją SevenTools.",
+    "subtitle": "007Tools",
+    "description": "Źródło z aplikacją 007Tools.",
     "iconURL": icon,
     "website": f"{site}/7tools/install/",
-    "tintColor": "0A84FF",
+    "tintColor": "E0B84D",
     "apps": [app],
     "news": [],
 }
