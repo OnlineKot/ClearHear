@@ -293,3 +293,125 @@ enum Morse {
         return b
     }
 }
+
+// Dzwieki do psikusow. Tez z kodu.
+enum PrankSound {
+    private static let rate = Synth.rate
+
+    private static func make(_ seconds: Double, _ f: (Double) -> Float) -> SampleBuffer {
+        let n = Int(seconds * rate)
+        let b = SampleBuffer(count: n, rate: rate)
+        for i in 0..<n { b.data[i] = f(Double(i) / rate) }
+        let p = b.peak()
+        if p > 0.95 { for i in 0..<n { b.data[i] *= 0.95 / p } }
+        b.fadeEdges(ms: 3)
+        return b
+    }
+
+    // tluczone szklo: trzask szumu i sypiace sie kawalki
+    static func glass() -> SampleBuffer {
+        var n = Noise()
+        var prev: Float = 0
+        var pings: [(Double, Double)] = []
+        var r = Noise()
+        for _ in 0..<26 { pings.append((0.02 + Double(abs(r.next())) * 0.9, 2500 + Double(abs(r.next())) * 4500)) }
+        return make(1.2) { t in
+            let w = n.next()
+            let hp = w - prev
+            prev = w
+            var s: Float = hp * Float(exp(-t * 14)) * 0.9
+            for (at, f) in pings where t > at {
+                let dt = t - at
+                let ring = sin(2 * .pi * f * dt) * exp(-dt * 38)
+                s += Float(ring) * 0.12
+            }
+            return s
+        }
+    }
+
+    // bzyczenie muchy: pila z drganiem
+    static func fly() -> SampleBuffer {
+        var ph = 0.0
+        return make(1.0) { t in
+            let f = 190 + 45 * sin(2 * .pi * 7 * t) + 20 * sin(2 * .pi * 2.3 * t)
+            ph += f / rate
+            ph -= ph.rounded(.down)
+            let am: Float = 0.6 + 0.4 * Float(sin(2 * .pi * 33 * t))
+            let saw = Float(ph * 2 - 1) * 0.5
+            let harm = Float(sin(2 * .pi * 2 * ph)) * 0.2
+            return (saw + harm) * am * 0.8
+        }
+    }
+
+    // dzwonek telefonu: dwie nuty w kolko
+    static func ring() -> SampleBuffer {
+        var ph = 0.0
+        return make(2.0) { t in
+            let on = t < 0.4 || (t > 0.5 && t < 0.9)
+            let hi = Int(t / 0.2) % 2 == 0
+            let f: Double = on ? (hi ? 880.0 : 988.0) : 0
+            ph += 2 * .pi * f / rate
+            let tone = sin(ph) + 0.3 * sin(2 * ph)
+            return on ? Float(tone) * 0.4 : 0
+        }
+    }
+
+    static func ping() -> SampleBuffer {
+        make(0.6) { t in
+            let a = sin(2 * .pi * 1318 * t)
+            let b = 0.5 * sin(2 * .pi * 1976 * t)
+            let e = exp(-t * 7)
+            return Float((a + b) * e * 0.4)
+        }
+    }
+
+    static func powerDown() -> SampleBuffer {
+        var ph = 0.0
+        return make(1.4) { t in
+            let f: Double = 880 * pow(max(0.05, 1 - t / 1.4), 3) + 60
+            ph += 2 * .pi * f / rate
+            let env = Float(max(0, 1 - t / 1.4))
+            return Float(sin(ph)) * env * 0.5
+        }
+    }
+
+    static func error() -> SampleBuffer {
+        make(0.5) { t in
+            let f: Double = t < 0.18 ? 440.0 : 330.0
+            let sq: Float = sin(2 * .pi * f * t) > 0 ? 1 : -1
+            let env = Float(max(0, 1 - t / 0.5))
+            return sq * 0.25 * env
+        }
+    }
+
+    static func splat() -> SampleBuffer {
+        var n = Noise()
+        var lp: Float = 0
+        return make(0.25) { t in
+            lp += 0.2 * (n.next() - lp)
+            let body = lp * Float(exp(-t * 18)) * 1.6
+            let thump = Float(sin(2 * .pi * 90 * t) * exp(-t * 25)) * 0.6
+            return body + thump
+        }
+    }
+
+    static func tick() -> SampleBuffer {
+        var n = Noise()
+        return make(0.03) { t in n.next() * Float(exp(-t * 180)) * 0.35 }
+    }
+
+    static func chime() -> SampleBuffer {
+        make(1.2) { t in
+            let a = sin(2 * .pi * 880 * t)
+            let b = 0.6 * sin(2 * .pi * 1320 * t)
+            let c = 0.3 * sin(2 * .pi * 1760 * t)
+            let e = exp(-t * 3.5)
+            return Float((a + b + c) * e * 0.3)
+        }
+    }
+
+    static let all: [String: () -> SampleBuffer] = [
+        "glass": glass, "fly": fly, "ring": ring, "ping": ping, "powerdown": powerDown,
+        "error": error, "splat": splat, "tick": tick, "chime": chime,
+    ]
+}

@@ -55,6 +55,13 @@ final class Mixer {
     private let tap = UnsafeMutablePointer<Float>.allocate(capacity: 8192)
     private var tapW = 0
 
+    // "Sluchaj" (dawne HearNow): mikrofon -> odszumianie i podbicie glosu -> do wyjscia
+    let listenKnobs = Knobs()
+    let listenMeters = Meters()
+    private let listenDSP: VoiceDSP
+    private let listenRing = Ring(capacity: 16384)
+    private var listenOn = false
+
     // nagrywanie wlasnego sampla (max 30 s)
     private let recBuf = UnsafeMutablePointer<Float>.allocate(capacity: 48000 * 30)
     private var recLen = 0
@@ -78,6 +85,7 @@ final class Mixer {
     init(rate: Double = 48000) {
         self.rate = rate
         looper = LooperCore(rate: rate)
+        listenDSP = VoiceDSP(rate: Float(rate), knobs: listenKnobs, meters: listenMeters)
         bus.initialize(repeating: 0, count: Mixer.block)
         rec.initialize(repeating: 0, count: Mixer.block)
         fifo.initialize(repeating: 0, count: 32768)
@@ -208,6 +216,17 @@ final class Mixer {
         }
     }
 
+    // sluchanie na zywo
+    func setListening(_ on: Bool) {
+        locked {
+            listenOn = on
+            listenRing.skip(listenRing.available)
+            if on { listenRing.prefill(512) } else { listenMeters.clear() }
+        }
+    }
+
+    var isListening: Bool { locked { listenOn } }
+
     // nagrywanie sampla z mikrofonu
     func startSampleRecording() { locked { recLen = 0; recOn = true } }
 
@@ -253,6 +272,7 @@ final class Mixer {
                 recLen += 1
             }
         }
+        if listenOn { listenDSP.process(x, n, into: listenRing) }
         let r = (sq / Float(max(1, n))).squareRoot()
         micRms += 0.5 * (r - micRms)
         micPeak = max(pk, micPeak * 0.97)
@@ -298,6 +318,16 @@ final class Mixer {
 
         metronomeInto(out, n)
         for i in 0..<n { out[i] += bus[i] }
+
+        // sluchanie: opoznienie ma nie rosnac, wiec nadmiar wyrzucamy
+        if listenOn {
+            let extra = listenRing.available - 2048
+            if extra > 0 { listenRing.skip(extra) }
+            let got = listenRing.read(rec, n)
+            for i in 0..<got { out[i] += rec[i] }
+        } else if listenRing.available > 0 {
+            listenRing.skip(listenRing.available)
+        }
 
         // glosnosc i miekki limiter
         var pk: Float = 0

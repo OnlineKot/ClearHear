@@ -1,4 +1,5 @@
 import AVFoundation
+import AudioToolbox
 import Combine
 import UIKit
 
@@ -48,6 +49,7 @@ final class SevenGraph {
     private var delay: AVAudioUnitDelay?
     private var reverb: AVAudioUnitReverb?
     private var gate: AVAudioMixerNode?
+    private var limiter: AVAudioUnitEffect?
 
     init(mixer: Mixer) { self.mixer = mixer }
 
@@ -78,7 +80,7 @@ final class SevenGraph {
             let input = e.inputNode
             let hw = input.outputFormat(forBus: 0)
             guard hw.sampleRate > 0, hw.channelCount > 0 else { throw NSError(domain: "7Tools", code: 1) }
-            guard let fxFmt = AVAudioFormat(standardFormatWithSampleRate: hw.sampleRate, channels: 1) else { return }
+            let fxFmt = hw
 
             // wejscie idzie dwiema drogami: do miksera (looper, stroik) i przez efekty do wyjscia
             let micMix = AVAudioMixerNode()
@@ -95,7 +97,13 @@ final class SevenGraph {
             let delay = AVAudioUnitDelay()
             let reverb = AVAudioUnitReverb()
             let gate = AVAudioMixerNode()
-            for n in [micMix, sink, eq, pitch, dist, delay, reverb, gate] as [AVAudioNode] { e.attach(n) }
+            // limiter na koncu toru efektow: nic nie wyjdzie glosniej, niz pozwalamy
+            let limDesc = AudioComponentDescription(componentType: kAudioUnitType_Effect,
+                                                    componentSubType: kAudioUnitSubType_PeakLimiter,
+                                                    componentManufacturer: kAudioUnitManufacturer_Apple,
+                                                    componentFlags: 0, componentFlagsMask: 0)
+            let limiter = AVAudioUnitEffect(audioComponentDescription: limDesc)
+            for n in [micMix, sink, eq, pitch, dist, delay, reverb, limiter, gate] as [AVAudioNode] { e.attach(n) }
 
             e.connect(input, to: [AVAudioConnectionPoint(node: micMix, bus: 0),
                                   AVAudioConnectionPoint(node: eq, bus: 0)], fromBus: 0, format: hw)
@@ -104,16 +112,22 @@ final class SevenGraph {
             e.connect(pitch, to: dist, format: fxFmt)
             e.connect(dist, to: delay, format: fxFmt)
             e.connect(delay, to: reverb, format: fxFmt)
-            e.connect(reverb, to: gate, format: fxFmt)
+            e.connect(reverb, to: limiter, format: fxFmt)
+            e.connect(limiter, to: gate, format: fxFmt)
             e.connect(gate, to: e.mainMixerNode, format: fxFmt)
             gate.outputVolume = 0
+            if let au = limiter.audioUnit {
+                AudioUnitSetParameter(au, kLimiterParam_PreGain, kAudioUnitScope_Global, 0, -8, 0)
+                AudioUnitSetParameter(au, kLimiterParam_AttackTime, kAudioUnitScope_Global, 0, 0.002, 0)
+                AudioUnitSetParameter(au, kLimiterParam_DecayTime, kAudioUnitScope_Global, 0, 0.05, 0)
+            }
 
             eq.bands[0].filterType = .highPass
             eq.bands[0].bypass = false
             eq.bands[1].filterType = .lowPass
             eq.bands[1].bypass = false
             self.eq = eq; self.pitch = pitch; self.dist = dist
-            self.delay = delay; self.reverb = reverb; self.gate = gate
+            self.delay = delay; self.reverb = reverb; self.gate = gate; self.limiter = limiter
         }
 
         e.mainMixerNode.outputVolume = 1
@@ -125,7 +139,7 @@ final class SevenGraph {
     func stop() {
         engine?.stop()
         engine = nil
-        eq = nil; pitch = nil; dist = nil; delay = nil; reverb = nil; gate = nil
+        eq = nil; pitch = nil; dist = nil; delay = nil; reverb = nil; gate = nil; limiter = nil
     }
 
     // ustawia efekt glosu, on = czy w ogole slychac
@@ -141,7 +155,7 @@ final class SevenGraph {
         delay?.wetDryMix = p.delay > 0 ? p.delayMix : 0
         reverb?.loadFactoryPreset(p.reverb)
         reverb?.wetDryMix = p.reverbMix
-        gate.outputVolume = on ? 1 : 0
+        gate.outputVolume = on ? 0.6 : 0
     }
 }
 
@@ -157,6 +171,8 @@ final class AudioHub: ObservableObject {
     @Published private(set) var headphones = false
     @Published private(set) var micDenied = false
     @Published var notice: String?
+
+    @Published private(set) var listening = false
 
     @Published var fx = FXPreset.all[0] { didSet { applyFX() } }
     @Published var fxOn = false { didSet { applyFX() } }
@@ -249,15 +265,39 @@ final class AudioHub: ObservableObject {
         }
     }
 
+    // ---------------------------------------------------------- sluchanie na zywo (dawne HearNow)
+
+    func startListen() async {
+        guard headphones else {
+            notice = "Podłącz słuchawki. Bez nich mikrofon od razu by zapiszczał."
+            return
+        }
+        guard await useMic("listen") else { return }
+        mixer.setListening(true)
+        listening = true
+    }
+
+    func stopListen() {
+        guard listening else { return }
+        mixer.setListening(false)
+        listening = false
+        releaseMic("listen")
+    }
+
+    func toggleListen() async {
+        if listening { stopListen() } else { await startListen() }
+    }
+
     // ---------------------------------------------------------- trasa i opoznienie
 
     private func routeChanged() {
         let outs = AVAudioSession.sharedInstance().currentRoute.outputs
         let types: Set<AVAudioSession.Port> = [.headphones, .bluetoothA2DP, .bluetoothHFP, .bluetoothLE, .usbAudio]
         headphones = outs.contains { types.contains($0.portType) }
-        if !headphones && fxOn {
-            fxOn = false
-            notice = "Słuchawki odłączone. Wyłączyłem efekty głosu, żeby nie piszczało."
+        if !headphones && (fxOn || listening) {
+            if fxOn { fxOn = false }
+            stopListen()
+            notice = "Słuchawki odłączone. Wyłączyłem mikrofon w słuchawkach, żeby nie piszczało."
         }
         updateLatency()
     }

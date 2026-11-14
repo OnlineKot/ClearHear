@@ -247,6 +247,47 @@ struct CoreCheck {
             check(m.stopSampleRecording() == nil, "puste nagranie to nil")
         }
 
+
+        print("Sluchanie przez mikser")
+        do {
+            let m = Mixer(rate: 48000)
+            m.masterGain = 1
+            m.listenKnobs.gainDB = 9; m.listenKnobs.denoise = 0.6; m.listenKnobs.clarity = 0.6; m.listenKnobs.auto = true
+            m.setListening(true)
+            var rng = Noise()
+            // 12 s: szum i co sekunde "slowo" (ton z modulacja), ciche potem glosne
+            func feedSecond(_ amp: Float) -> [Float] {
+                var out = [Float]()
+                let n = 48000
+                var x = [Float](repeating: 0, count: n)
+                for i in 0..<n {
+                    let t = Float(i) / 48000
+                    let word: Float = t < 0.5 ? Float(sin(2 * .pi * 220 * t) + 0.5 * sin(2 * .pi * 880 * t)) * (0.5 - 0.5 * cosf(2 * .pi * 4 * t)) : 0
+                    x[i] = word * amp + rng.next() * 0.002
+                }
+                var i = 0
+                while i < n {
+                    let c = min(480, n - i)
+                    x.withUnsafeBufferPointer { m.capture($0.baseAddress! + i, c) }
+                    out += renderAll(m, frames: c)
+                    i += c
+                }
+                return out
+            }
+            var last: [Float] = []
+            for _ in 0..<4 { last = feedSecond(0.01) }
+            let quiet = rms(last[0..<24000])
+            for _ in 0..<3 { last = feedSecond(1.2) }
+            let loudRms = rms(last[0..<24000])
+            let loudPeak = (last.map { abs($0) }.max() ?? 0)
+            print(String(format: "  cichy %.4f, glosny %.4f, szczyt %.2f", quiet, loudRms, loudPeak))
+            check(quiet > 0.004, "cichy dzwiek jest slyszalny przez mikser")
+            check(loudPeak <= 0.62 && loudRms < 0.2, "glosny dzwiek nie bije po uszach")
+            m.setListening(false)
+            let off = renderAll(m, frames: 4800)
+            check(rms(off[2400..<4800]) < 0.001, "po wylaczeniu cisza")
+        }
+
         print("Stroik")
         do {
             let rate: Float = 48000
@@ -284,6 +325,77 @@ struct CoreCheck {
             check(Morse.timings("ĄĆ", wpm: 20).filter { $0.on }.count == 6, "polskie litery")
             let a = Morse.audio("E E", wpm: 15)
             check(a.peak() > 0.3 && a.duration > 0.3, "dzwiek Morse'a")
+        }
+
+
+        print("Dzwieki do psikusow")
+        for (id, make) in PrankSound.all.sorted(by: { $0.key < $1.key }) {
+            let b = make()
+            var bad = false
+            for i in 0..<b.count where !b.data[i].isFinite || abs(b.data[i]) > 1.001 { bad = true }
+            check(b.peak() >= 0.05 && !bad, "\(id): glosny, skonczony (\(String(format: "%.2f", b.peak())), \(String(format: "%.2f", b.duration)) s)")
+        }
+
+        print("Geo i slonce")
+        do {
+            // Krakow -> Warszawa: ok. 252 km, azymut ok. 31 stopni
+            let d = Geo.distance(50.0647, 19.9450, 52.2297, 21.0122)
+            check(abs(d - 252_000) < 4000, "Krakow-Warszawa \(Int(d / 1000)) km")
+            let b = Geo.bearing(50.0647, 19.9450, 52.2297, 21.0122)
+            check(abs(b - 17) < 4, "azymut \(Int(b)) stopni (N-NE)")
+            check(Geo.compassName(0) == "N" && Geo.compassName(92) == "E" && Geo.compassName(359) == "N" && Geo.compassName(225) == "SW", "nazwy stron swiata")
+            check(Geo.dms(50.0614, positive: "N", negative: "S").hasPrefix("50°03'") && Geo.dms(-33.8, positive: "N", negative: "S").hasSuffix("S"), "stopnie, minuty, sekundy")
+            check(Geo.distanceText(850) == "850 m" && Geo.distanceText(2500) == "2.5 km", "tekst odleglosci")
+            // Krakow, 21 czerwca (dzien 172): wschod ok. 04:15 CEST, zachod ok. 20:55 CEST
+            if let t = Sun.times(dayOfYear: 172, lat: 50.0647, lon: 19.945) {
+                let rise = Sun.hhmm(t.rise, utcOffsetMinutes: 120), set = Sun.hhmm(t.set, utcOffsetMinutes: 120)
+                check(rise.hasPrefix("04:") && set.hasPrefix("20:") || set.hasPrefix("21:"), "wschod \(rise), zachod \(set) w Krakowie 21.06")
+            } else { check(false, "slonce w Krakowie") }
+            check(Sun.times(dayOfYear: 172, lat: 80, lon: 20) == nil, "doba polarna: brak wschodu")
+        }
+
+        print("Jednostki")
+        do {
+            let len = Units.all[0], temp = Units.all[5]
+            let km = len.units.first { $0.name == "km" }!, mile = len.units.first { $0.name == "mila" }!
+            check(abs(Units.convert(10, from: km, to: mile, in: len) - 6.2137) < 0.001, "10 km = 6,21 mili")
+            let c = temp.units[0], f = temp.units[1], k = temp.units[2]
+            check(abs(Units.convert(100, from: c, to: f, in: temp) - 212) < 0.001, "100°C = 212°F")
+            check(abs(Units.convert(0, from: c, to: k, in: temp) - 273.15) < 0.001, "0°C = 273,15 K")
+            check(abs(Units.convert(-40, from: f, to: c, in: temp) + 40) < 0.001, "-40°F = -40°C")
+        }
+
+        print("Poza telefonu i gesty")
+        do {
+            check(Pose.classify(x: 0, y: -1, z: 0) == .upright, "pionowo")
+            check(Pose.classify(x: 0, y: 1, z: 0) == .upsideDown, "do gory nogami")
+            check(Pose.classify(x: 1, y: 0, z: 0) == .landscapeLeft && Pose.classify(x: -1, y: 0, z: 0) == .landscapeRight, "na boku")
+            check(Pose.classify(x: 0, y: 0, z: -1) == .faceUp && Pose.classify(x: 0, y: 0, z: 1) == .faceDown, "plasko")
+            // histereza: lekkie przechylenie nie przeskakuje
+            check(Pose.classify(x: 0.55, y: -0.6, z: 0, previous: .upright) == .upright, "histereza przy przechyle")
+            check(Pose.upsideDown.screenAngle == 180, "ekran obrocony o 180")
+
+            var sh = ShakeDetector()
+            var fired = 0
+            for i in 0..<20 { if sh.feed(magnitude: 1.0, at: Double(i) * 0.02) { fired += 1 } }
+            check(fired == 0, "bez ruchu nie potrzasa")
+            for i in 0..<8 { if sh.feed(magnitude: i % 2 == 0 ? 3.2 : 0.2, at: 1 + Double(i) * 0.06) { fired += 1 } }
+            check(fired == 1, "potrzasniecie wykryte raz (\(fired))")
+
+            var cl = ClapDetector()
+            var claps = 0
+            var t = 0.0
+            func block(_ level: Float, _ n: Int) { for _ in 0..<n { if cl.feed(level: level, at: t) { claps += 1 }; t += 0.01 } }
+            block(0.005, 100)
+            block(0.4, 2); block(0.005, 20)
+            check(claps == 0, "jedno klasniecie to jeszcze nie sygnal")
+            block(0.4, 2); block(0.005, 50)
+            check(claps == 1, "dwa klasniecia = sygnal (\(claps))")
+            block(0.05, 200)   // glosna rozmowa, ale bez skoku
+            check(claps == 1, "rozmowa nie jest klasnieciem")
+
+            check(Surroundings.classify(dbfs: -65) == .quiet && Surroundings.classify(dbfs: -40) == .talk && Surroundings.classify(dbfs: -20) == .crowd, "srodowisko z poziomu")
+            check(Surroundings.classify(dbfs: -51, previous: .quiet) == .quiet, "histereza srodowiska")
         }
 
         print("Wydajnosc")

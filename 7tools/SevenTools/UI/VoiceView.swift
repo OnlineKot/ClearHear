@@ -4,6 +4,7 @@ import SwiftUI
 struct VoiceView: View {
     @EnvironmentObject private var hub: AudioHub
     @Namespace private var ns
+    @State private var mode = 1
 
     var body: some View {
         ScrollView {
@@ -11,12 +12,17 @@ struct VoiceView: View {
                 HStack {
                     VStack(alignment: .leading, spacing: 2) {
                         Text("Głos").spaced(.largeTitle, .bold)
-                        Text("Twój głos z efektami, na żywo").spaced(.subheadline).foregroundStyle(.secondary)
+                        Text(mode == 0 ? "Twój głos z efektami, na żywo" : "Mikrofon w słuchawkach, wyraźniej i bez szumu")
+                            .spaced(.subheadline).foregroundStyle(.secondary)
                     }
                     Spacer()
                 }
 
-                powerButton
+                Picker("Tryb", selection: $mode) {
+                    Label("Efekty", systemImage: "wand.and.stars").tag(0)
+                    Label("Słuchaj", systemImage: "ear.fill").tag(1)
+                }
+                .pickerStyle(.segmented)
 
                 if !hub.headphones {
                     Card {
@@ -27,7 +33,12 @@ struct VoiceView: View {
                     .transition(.scale(scale: 0.95).combined(with: .opacity))
                 }
 
-                presets
+                if mode == 0 {
+                    powerButton
+                    presets
+                } else {
+                    ListenView()
+                }
             }
             .padding(.horizontal, 16)
             .padding(.top, 8)

@@ -4,9 +4,14 @@ import AVFoundation
 struct ToolsView: View {
     @EnvironmentObject private var hub: AudioHub
     @State private var path: [Tool] = []
+    @State private var showStage = false
 
     enum Tool: String, Hashable, CaseIterable, Identifiable {
-        case tuner, tone, meter, morse, settings
+        case tuner, tone, meter, morse, clap, talk
+        case whereAmI, stage, gestures, level
+        case strobe, dice, counter, convert, qr, screen, mirror, send
+        case pranks, settings
+
         var id: String { rawValue }
 
         var title: String {
@@ -15,16 +20,46 @@ struct ToolsView: View {
             case .tone: return "Generator tonów"
             case .meter: return "Miernik dźwięku"
             case .morse: return "Morse"
+            case .clap: return "Znajdź telefon"
+            case .talk: return "Mówiący pad"
+            case .whereAmI: return "Gdzie jestem"
+            case .stage: return "Tryb obrotowy"
+            case .gestures: return "Gesty"
+            case .level: return "Poziomica"
+            case .strobe: return "Latarka i strobo"
+            case .dice: return "Losowanie"
+            case .counter: return "Licznik"
+            case .convert: return "Przelicznik"
+            case .qr: return "Kod QR"
+            case .screen: return "Test ekranu"
+            case .mirror: return "Lusterko"
+            case .send: return "Wyślij obrazki"
+            case .pranks: return "Psikusy"
             case .settings: return "Ustawienia"
             }
         }
 
         var subtitle: String {
             switch self {
-            case .tuner: return "Gitara, ukulele, głos. Pokazuje nutę i odchyłkę."
+            case .tuner: return "Gitara, ukulele, głos. Nuta i odchyłka."
             case .tone: return "Sinus, prostokąt, szum, przemiatanie."
             case .meter: return "Jak głośno jest wokół, z wykresem."
-            case .morse: return "Wpisz tekst, a apka go nada dźwiękiem i błyskiem."
+            case .morse: return "Dźwiękiem, błyskiem ekranu i latarką."
+            case .clap: return "Klaśnij dwa razy, a telefon zadzwoni."
+            case .talk: return "Wpisz tekst, a telefon go wypowie."
+            case .whereAmI: return "Miejsce, kompas, wysokość, słońce, parking."
+            case .stage: return "Pady i pętla, które obracają się do góry nogami i na bok."
+            case .gestures: return "Potrząśnij, odwróć, przechyl, a coś się stanie."
+            case .level: return "Połóż albo przyłóż do ściany."
+            case .strobe: return "Stała, stroboskop i SOS."
+            case .dice: return "Kości, moneta, losowanie z listy."
+            case .counter: return "Duży przycisk do liczenia."
+            case .convert: return "Długość, masa, prędkość, dane, temperatura."
+            case .qr: return "Adres, tekst i Wi-Fi jako kod."
+            case .screen: return "Martwe piksele i plamy na ekranie."
+            case .mirror: return "Przednia kamera, też do góry nogami."
+            case .send: return "Kilka zdjęć naraz, do wybranej osoby."
+            case .pranks: return "Fałszywa aktualizacja, tryb demo, Evil iOS i inne."
             case .settings: return "Opóźnienie, wersja, źródła dźwięków."
             }
         }
@@ -35,6 +70,21 @@ struct ToolsView: View {
             case .tone: return "waveform.path"
             case .meter: return "gauge.with.needle.fill"
             case .morse: return "dot.radiowaves.right"
+            case .clap: return "hands.clap.fill"
+            case .talk: return "text.bubble.fill"
+            case .whereAmI: return "location.fill"
+            case .stage: return "rotate.3d"
+            case .gestures: return "hand.raised.fingers.spread.fill"
+            case .level: return "level.fill"
+            case .strobe: return "flashlight.on.fill"
+            case .dice: return "dice.fill"
+            case .counter: return "plus.circle.fill"
+            case .convert: return "arrow.left.arrow.right"
+            case .qr: return "qrcode"
+            case .screen: return "rectangle.inset.filled"
+            case .mirror: return "person.crop.square"
+            case .send: return "photo.on.rectangle.angled"
+            case .pranks: return "theatermasks.fill"
             case .settings: return "gearshape.fill"
             }
         }
@@ -45,49 +95,103 @@ struct ToolsView: View {
             case .tone: return .cyan
             case .meter: return .orange
             case .morse: return .pink
+            case .clap: return .yellow
+            case .talk: return .mint
+            case .whereAmI: return .blue
+            case .stage: return .indigo
+            case .gestures: return .purple
+            case .level: return .teal
+            case .strobe: return .yellow
+            case .dice: return .red
+            case .counter: return .orange
+            case .convert: return .green
+            case .qr: return .gray
+            case .screen: return .blue
+            case .mirror: return .cyan
+            case .send: return .pink
+            case .pranks: return .red
             case .settings: return .gray
             }
         }
     }
 
+    private let groups: [(String, [Tool])] = [
+        ("Dźwięk", [.tuner, .tone, .meter, .morse, .clap, .talk]),
+        ("Gdzie jestem i ruch", [.whereAmI, .stage, .gestures, .level]),
+        ("Przydatne", [.strobe, .dice, .counter, .convert, .qr, .screen, .mirror, .send]),
+        ("Dla zabawy", [.pranks]),
+        ("Apka", [.settings]),
+    ]
+
     var body: some View {
         NavigationStack(path: $path) {
             Page("Narzędzia", "Rzeczy, które się przydają, i takie, które są po prostu fajne") {
-                VStack(spacing: 12) {
-                    ForEach(Tool.allCases) { t in
-                        NavigationLink(value: t) {
-                            HStack(spacing: 16) {
-                                Image(systemName: t.symbol)
-                                    .font(.system(size: 24, weight: .semibold))
-                                    .frame(width: 52, height: 52)
-                                    .glassEffect(.regular.tint(t.tint.opacity(0.45)), in: .circle)
-                                VStack(alignment: .leading, spacing: 3) {
-                                    Text(t.title).spaced(.headline, .bold)
-                                    Text(t.subtitle).spaced(.footnote).foregroundStyle(.secondary)
-                                        .multilineTextAlignment(.leading)
-                                }
-                                Spacer(minLength: 4)
-                                Image(systemName: "chevron.right").foregroundStyle(.tertiary)
-                            }
-                            .foregroundStyle(.white)
-                            .padding(16)
-                            .frame(maxWidth: .infinity)
-                            .glassEffect(.regular.interactive(), in: .rect(cornerRadius: 28))
+                VStack(alignment: .leading, spacing: 22) {
+                    ForEach(groups, id: \.0) { g in
+                        VStack(alignment: .leading, spacing: 10) {
+                            Text(g.0).spaced(.title3, .bold)
+                            ForEach(g.1) { t in row(t) }
                         }
-                        .buttonStyle(.plain)
                     }
                 }
             }
-            .navigationDestination(for: Tool.self) { t in
-                switch t {
-                case .tuner: TunerView(hub: hub)
-                case .tone: ToneView()
-                case .meter: MeterView()
-                case .morse: MorseView()
-                case .settings: SettingsView()
-                }
-            }
+            .navigationDestination(for: Tool.self) { t in destination(t) }
             .toolbar(.hidden, for: .navigationBar)
+        }
+        .fullScreenCover(isPresented: $showStage) { StageView(hub: hub) }
+    }
+
+    @ViewBuilder
+    private func row(_ t: Tool) -> some View {
+        if t == .stage {
+            Button { showStage = true } label: { rowLabel(t) }.buttonStyle(.plain)
+        } else {
+            NavigationLink(value: t) { rowLabel(t) }.buttonStyle(.plain)
+        }
+    }
+
+    private func rowLabel(_ t: Tool) -> some View {
+        HStack(spacing: 14) {
+            Image(systemName: t.symbol)
+                .font(.system(size: 21, weight: .semibold))
+                .frame(width: 46, height: 46)
+                .glassEffect(.regular.tint(t.tint.opacity(0.45)), in: .circle)
+            VStack(alignment: .leading, spacing: 2) {
+                Text(t.title).spaced(.headline, .bold)
+                Text(t.subtitle).spaced(.footnote).foregroundStyle(.secondary).multilineTextAlignment(.leading)
+            }
+            Spacer(minLength: 4)
+            Image(systemName: "chevron.right").foregroundStyle(.tertiary)
+        }
+        .foregroundStyle(.white)
+        .padding(13)
+        .frame(maxWidth: .infinity)
+        .glassEffect(.regular.interactive(), in: .rect(cornerRadius: 26))
+    }
+
+    @ViewBuilder
+    private func destination(_ t: Tool) -> some View {
+        switch t {
+        case .tuner: TunerView(hub: hub)
+        case .tone: ToneView()
+        case .meter: MeterView()
+        case .morse: MorseView()
+        case .clap: ClapFinderView()
+        case .talk: TalkView()
+        case .whereAmI: LocationView()
+        case .stage: EmptyView()
+        case .gestures: GesturesView()
+        case .level: LevelView()
+        case .strobe: StrobeView()
+        case .dice: DiceView()
+        case .counter: CounterView()
+        case .convert: ConverterView()
+        case .qr: QRView()
+        case .screen: ScreenTestLauncher()
+        case .mirror: MirrorView()
+        case .send: SendImagesView()
+        case .pranks: PranksView()
+        case .settings: SettingsView()
         }
     }
 }

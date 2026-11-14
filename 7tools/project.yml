@@ -17,10 +17,12 @@ targets:
       properties:
         CFBundleDisplayName: 7Tools
         CFBundleName: 007Tools
-        CFBundleShortVersionString: "1.0"
+        CFBundleShortVersionString: "1.1"
         CFBundleVersion: "$(CURRENT_PROJECT_VERSION)"
         NSMicrophoneUsageDescription: 007Tools używa mikrofonu do nagrywania pętli i własnych dźwięków, do stroika, miernika i efektów głosu. Nic nie jest wysyłane.
-        NSCameraUsageDescription: Aparat jest potrzebny tylko do błysku latarką w narzędziu Morse.
+        NSCameraUsageDescription: Aparat służy do latarki i błysków (Morse, strobo), lusterka i zabawnych psikusów. Obraz nie jest zapisywany ani wysyłany.
+        NSLocationWhenInUseUsageDescription: Lokalizacja pokazuje, gdzie jesteś, kierunek, wysokość i drogę do zapamiętanego miejsca. Nic nie jest wysyłane.
+        NSMotionUsageDescription: Czujniki ruchu służą do gestów, trybu obrotowego, poziomicy i barometru.
         UIBackgroundModes:
           - audio
         UILaunchScreen: {}

@@ -9,22 +9,11 @@ struct PadsView: View {
     @Namespace private var ns
 
     var body: some View {
-        VStack(spacing: 16) {
-            header
-            bankPicker
-            grid
-            Spacer(minLength: 0)
-            if pads.editing {
-                Text("Tryb edycji: dotknij pada, żeby zmienić dźwięk, tryb i głośność.")
-                    .spaced(.footnote)
-                    .foregroundStyle(.secondary)
-                    .multilineTextAlignment(.center)
-                    .transition(.opacity.combined(with: .move(edge: .bottom)))
-            }
+        ScrollView {
+            content
         }
-        .padding(.horizontal, 16)
-        .padding(.top, 8)
-        .padding(.bottom, 8)
+        .scrollBounceBehavior(.basedOnSize)
+        .scrollIndicators(.hidden)
         .background(Backdrop())
         .animation(.bouncy(duration: 0.5), value: pads.editing)
         .sheet(item: Binding(get: { editSlot.map { SlotID(id: $0) } }, set: { editSlot = $0?.id })) { s in
@@ -37,6 +26,24 @@ struct PadsView: View {
             })
         }
         .sheet(isPresented: $showLibrary) { LibraryView(pick: nil) }
+    }
+
+    private var content: some View {
+        VStack(spacing: 16) {
+            header
+            bankPicker
+            grid
+            if pads.editing {
+                Text("Tryb edycji: dotknij pada, żeby zmienić dźwięk, tryb i głośność.")
+                    .spaced(.footnote)
+                    .foregroundStyle(.secondary)
+                    .multilineTextAlignment(.center)
+                    .transition(.opacity.combined(with: .move(edge: .bottom)))
+            }
+        }
+        .padding(.horizontal, 16)
+        .padding(.top, 8)
+        .padding(.bottom, 20)
     }
 
     private var header: some View {
