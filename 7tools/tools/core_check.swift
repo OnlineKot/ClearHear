@@ -329,6 +329,72 @@ struct CoreCheck {
             check((quiet.max() ?? 0) - (quiet.min() ?? 0) < 20, "szum jest plaski")
         }
 
+
+        print("IKEA: schemat, trasa, wyszukiwanie")
+        do {
+            check(abs(IkeaMap.floorLength(1) - 556) < 0.01 && abs(IkeaMap.floorLength(0) - 556) < 0.01, "sciezki maja po 556 m")
+            let a = IkeaMap.pointAt(floor: 1, s: 50)
+            check(abs(a.p.x - 60) < 0.01 && abs(a.p.y - 10) < 0.01 && abs(a.bearing - 90) < 0.5, "s=50: (60,10), idzie na wschod (\(a.bearing)°)")
+            let b = IkeaMap.pointAt(floor: 1, s: 107)
+            check(abs(b.p.x - 110) < 0.01 && abs(b.p.y - 17) < 0.01 && abs(b.bearing - 180) < 0.5, "zakret w dol, kierunek na poludnie")
+            let c = IkeaMap.pointAt(floor: 1, s: 150)
+            check(abs(c.bearing - 270) < 0.5, "drugi rzad idzie na zachod (\(c.bearing)°)")
+            check(IkeaMap.zones.allSatisfy { $0.s >= 0 && $0.s <= IkeaMap.floorLength($0.floor) }, "wszystkie dzialy leza na sciezce")
+            check(Set(IkeaMap.zones.map { $0.id }).count == IkeaMap.zones.count, "id dzialow sa unikalne")
+
+            // trasa w przod, na jednym pietrze
+            let r1 = IkeaMap.route(from: (1, 55), to: (1, 285))
+            check(r1.forward && abs(r1.meters - 230) < 0.01 && r1.legs.count == 1, "salony -> kuchnie: 230 m w przod")
+            check(r1.passing.map { $0.id }.contains("restauracja") && r1.passing.map { $0.id }.contains("jadalnie"), "po drodze restauracja i jadalnie")
+            // trasa przez pietra
+            let r2 = IkeaMap.route(from: (1, 415), to: (0, 140))
+            check(r2.legs.count == 2 && r2.legs[0].floor == 1 && r2.legs[1].floor == 0 && abs(r2.meters - (556 - 415 + 140)) < 0.01, "szafy -> naczynia: dwa pietra, \(Int(r2.meters)) m")
+            // pod prad
+            let r3 = IkeaMap.route(from: (1, 285), to: (1, 55))
+            check(!r3.forward && abs(r3.meters - 230) < 0.01, "kuchnie -> salony: pod prad, 230 m")
+            check(!r3.passing.isEmpty && r3.passing.first!.s >= r3.passing.last!.s, "mijane dzialy w kolejnosci powrotu")
+            check(r1.legs[0].points.count >= 3 && r1.legs[0].points.first == IkeaMap.pointAt(floor: 1, s: 55).p, "lamana trasy zaczyna sie w miejscu startu")
+
+            // global <-> pietro
+            let g = IkeaMap.global(floor: 0, s: 100)
+            let pl = IkeaMap.place(global: g)
+            check(pl.floor == 0 && abs(pl.s - 100) < 0.01, "przeliczenie pozycji globalnej")
+
+            // wyszukiwanie
+            check(IkeaMap.find("kanapa").first?.id == "salony", "kanapa -> salony")
+            check(IkeaMap.find("Łóżko 160").first?.id == "lozka", "Łóżko 160 -> lozka (\(IkeaMap.find("Łóżko 160").first?.id ?? "-"))")
+            check(IkeaMap.find("garnek").first?.id == "naczynia", "garnek -> naczynia")
+            check(IkeaMap.find("lampka nocna").first?.id == "oswietlenie", "lampka nocna -> oswietlenie (\(IkeaMap.find("lampka nocna").map { $0.id }.prefix(3)))")
+            check(IkeaMap.find("pościel").first?.id == "tekstylia", "pościel -> tekstylia")
+            check(IkeaMap.find("klopsiki").first?.id == "restauracja", "klopsiki -> restauracja")
+            check(IkeaMap.find("szafa pax").first?.id == "pax", "szafa pax -> PAX")
+            check(IkeaMap.find("rosliny").first?.id == "rosliny", "rosliny -> rosliny (\(IkeaMap.find("rosliny").first?.id ?? "-"))")
+            check(IkeaMap.find("xyzqwerty").isEmpty, "nieznane slowo nic nie zwraca")
+
+            // magazyn
+            check(abs(IkeaMap.aisle(1) - 345) < 0.01 && abs(IkeaMap.aisle(40) - 435) < 0.01 && IkeaMap.aisle(20) > 345 && IkeaMap.aisle(20) < 435, "alejki rozlozone w magazynie")
+
+            // kolejnosc listy
+            let items = [("garnek", IkeaMap.zone("naczynia")!), ("sofa", IkeaMap.zone("salony")!), ("lozko", IkeaMap.zone("lozka")!)]
+            let ord = IkeaMap.order(items, from: 100)
+            check(ord.map { $0.name } == ["lozko", "garnek", "sofa"], "lista: najpierw to, co przed nami, potem to, co za nami (\(ord.map { $0.name }))")
+
+            // klik w mape
+            check(IkeaMap.nearestZone(to: P(x: 66, y: 12), floor: 1)?.id == "salony", "klik przy salonach wybiera salony")
+            check(IkeaMap.nearestZone(to: P(x: 60, y: 82), floor: 1) == nil, "klik daleko od sciezki nic nie wybiera")
+
+            // kompas
+            let off = HeadingCal.offset(compass: 130, pathBearing: 90)
+            check(abs(off - 40) < 0.001 && abs(HeadingCal.mapHeading(compass: 130, offset: off) - 90) < 0.001, "offset kompasu 40°")
+            check(abs(HeadingCal.diff(350, 10) + 20) < 0.001 && abs(HeadingCal.norm(-10) - 350) < 0.001, "roznica katow przez 0°")
+            var o = 0.0
+            for _ in 0..<80 { o = HeadingCal.blend(current: o, compass: 215, pathBearing: 180) }
+            check(abs(o - 35) < 1.5, "offset dociaga sie do prawdziwego (\(Int(o))°)")
+            var o2 = 350.0
+            for _ in 0..<80 { o2 = HeadingCal.blend(current: o2, compass: 20, pathBearing: 0) }
+            check(abs(HeadingCal.diff(o2, 20)) < 1.5, "dociaganie przez 360°/0° (\(Int(o2))°)")
+        }
+
         print("Stroik")
         do {
             let rate: Float = 48000

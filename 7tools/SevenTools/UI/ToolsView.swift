@@ -10,6 +10,7 @@ struct ToolsView: View {
         case tuner, tone, meter, morse, clap, talk, ultra
         case whereAmI, stage, gestures, level
         case strobe, dice, counter, convert, qr, screen, mirror, send
+        case ikea
         case pranks, settings
 
         var id: String { rawValue }
@@ -35,6 +36,7 @@ struct ToolsView: View {
             case .screen: return "Test ekranu"
             case .mirror: return "Lusterko"
             case .send: return "Wyślij obrazki"
+            case .ikea: return "IKEA Navigator"
             case .pranks: return "Psikusy"
             case .settings: return "Ustawienia"
             }
@@ -61,6 +63,7 @@ struct ToolsView: View {
             case .screen: return "Martwe piksele i plamy na ekranie."
             case .mirror: return "Przednia kamera, też do góry nogami."
             case .send: return "Kilka zdjęć naraz, do wybranej osoby."
+            case .ikea: return "Mapa IKEA Katowice, kalibracja pozycji, trasa, lista zakupów i asystent AI."
             case .pranks: return "Fałszywa aktualizacja, tryb demo, Evil iOS i inne."
             case .settings: return "Opóźnienie, wersja, źródła dźwięków."
             }
@@ -87,6 +90,7 @@ struct ToolsView: View {
             case .screen: return "rectangle.inset.filled"
             case .mirror: return "person.crop.square"
             case .send: return "photo.on.rectangle.angled"
+            case .ikea: return "map.fill"
             case .pranks: return "theatermasks.fill"
             case .settings: return "gearshape.fill"
             }
@@ -113,6 +117,7 @@ struct ToolsView: View {
             case .screen: return .blue
             case .mirror: return .cyan
             case .send: return .pink
+            case .ikea: return .yellow
             case .pranks: return .red
             case .settings: return .gray
             }
@@ -120,6 +125,7 @@ struct ToolsView: View {
     }
 
     private let groups: [(String, [Tool])] = [
+        ("Sklep", [.ikea]),
         ("Dźwięk", [.tuner, .tone, .meter, .morse, .ultra, .clap, .talk]),
         ("Gdzie jestem i ruch", [.whereAmI, .stage, .gestures, .level]),
         ("Przydatne", [.strobe, .dice, .counter, .convert, .qr, .screen, .mirror, .send]),
@@ -195,6 +201,7 @@ struct ToolsView: View {
         case .screen: ScreenTestLauncher()
         case .mirror: MirrorView()
         case .send: SendImagesView()
+        case .ikea: IkeaView()
         case .pranks: PranksView()
         case .settings: SettingsView()
         }
