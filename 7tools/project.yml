@@ -1,0 +1,35 @@
+name: SevenTools
+options:
+  bundleIdPrefix: pl.fastlink
+  deploymentTarget:
+    iOS: "26.0"
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+targets:
+  SevenTools:
+    type: application
+    platform: iOS
+    sources:
+      - path: SevenTools
+    info:
+      path: Support/Info.plist
+      properties:
+        CFBundleDisplayName: 7Tools
+        CFBundleName: 007Tools
+        CFBundleShortVersionString: "1.0"
+        CFBundleVersion: "$(CURRENT_PROJECT_VERSION)"
+        NSMicrophoneUsageDescription: 007Tools używa mikrofonu do nagrywania pętli i własnych dźwięków, do stroika, miernika i efektów głosu. Nic nie jest wysyłane.
+        NSCameraUsageDescription: Aparat jest potrzebny tylko do błysku latarką w narzędziu Morse.
+        UIBackgroundModes:
+          - audio
+        UILaunchScreen: {}
+        UIUserInterfaceStyle: Dark
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: pl.fastlink.seventools
+        TARGETED_DEVICE_FAMILY: "1"
+        CURRENT_PROJECT_VERSION: 1
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon

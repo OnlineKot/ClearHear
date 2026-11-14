@@ -1,0 +1,5 @@
+SevenTools.xcodeproj/
+Support/Info.plist
+build/
+*.ipa
+*.log

@@ -1,0 +1,79 @@
+name: 7Tools IPA
+
+on:
+  push:
+    paths:
+      - '7tools/**'
+      - '.github/workflows/7tools-ipa.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: 7tools-ipa
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  ipa:
+    runs-on: macos-latest
+    defaults:
+      run:
+        working-directory: 7tools
+    steps:
+      - uses: actions/checkout@v4
+
+      # apka jest na iOS 26, wiec potrzebny jest Xcode 26 (SDK ze szklem)
+      - name: Wybierz Xcode 26
+        run: |
+          XC=$(ls -d /Applications/Xcode_26*.app 2>/dev/null | sort -V | tail -n 1)
+          if [ -z "$XC" ]; then
+            echo "Brak Xcode 26 na tym runnerze, jest:"
+            ls /Applications | grep -i xcode
+            exit 1
+          fi
+          sudo xcode-select -s "$XC/Contents/Developer"
+          xcodebuild -version
+
+      # rdzen dzwieku (sample, mikser, looper, stroik) ma wlasny sprawdzian, bez telefonu
+      - name: Sprawdz rdzen dzwieku
+        run: |
+          swiftc -O -parse-as-library SevenTools/Core/*.swift tools/core_check.swift -o corecheck
+          ./corecheck
+
+      - name: Zainstaluj XcodeGen
+        run: brew install xcodegen
+
+      - name: Wygeneruj projekt Xcode
+        run: xcodegen generate
+
+      # bez podpisu, podpisze dopiero AltStore / Sideloadly / LiveContainer
+      - name: Zbuduj aplikacje
+        run: |
+          xcodebuild -project SevenTools.xcodeproj -scheme SevenTools \
+            -configuration Release -sdk iphoneos -derivedDataPath build \
+            CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" \
+            CURRENT_PROJECT_VERSION=${{ github.run_number }} \
+            build > build.log 2>&1 || {
+              echo "--- bledy ---"
+              grep -E "error:" build.log | sort -u | head -80
+              echo "--- koniec logu ---"
+              tail -n 40 build.log
+              exit 1
+            }
+          grep -E "warning:" build.log | sort -u | head -20 || true
+          tail -n 3 build.log
+
+      - name: Spakuj IPA
+        run: |
+          rm -rf Payload SevenTools.ipa
+          mkdir Payload
+          cp -R build/Build/Products/Release-iphoneos/SevenTools.app Payload/
+          zip -qry SevenTools.ipa Payload
+          ls -la SevenTools.ipa
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: SevenTools-ipa
+          path: 7tools/SevenTools.ipa
+          if-no-files-found: error
