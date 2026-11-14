@@ -116,11 +116,10 @@ final class SevenGraph {
             e.connect(limiter, to: gate, format: fxFmt)
             e.connect(gate, to: e.mainMixerNode, format: fxFmt)
             gate.outputVolume = 0
-            if let au = limiter.audioUnit {
-                AudioUnitSetParameter(au, kLimiterParam_PreGain, kAudioUnitScope_Global, 0, -8, 0)
-                AudioUnitSetParameter(au, kLimiterParam_AttackTime, kAudioUnitScope_Global, 0, 0.002, 0)
-                AudioUnitSetParameter(au, kLimiterParam_DecayTime, kAudioUnitScope_Global, 0, 0.05, 0)
-            }
+            let au = limiter.audioUnit
+            _ = AudioUnitSetParameter(au, kLimiterParam_PreGain, kAudioUnitScope_Global, 0, -8, 0)
+            _ = AudioUnitSetParameter(au, kLimiterParam_AttackTime, kAudioUnitScope_Global, 0, 0.002, 0)
+            _ = AudioUnitSetParameter(au, kLimiterParam_DecayTime, kAudioUnitScope_Global, 0, 0.05, 0)
 
             eq.bands[0].filterType = .highPass
             eq.bands[0].bypass = false
