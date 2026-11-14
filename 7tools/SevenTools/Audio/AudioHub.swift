@@ -55,7 +55,7 @@ final class SevenGraph {
 
     var hasMic: Bool { gate != nil }
 
-    func start(mic: Bool) throws {
+    func start(mic: Bool, fx useFX: Bool = false) throws {
         stop()
         let e = AVAudioEngine()
         guard let mono = AVAudioFormat(standardFormatWithSampleRate: mixer.rate, channels: 1) else { return }
@@ -78,11 +78,10 @@ final class SevenGraph {
 
         if mic {
             let input = e.inputNode
-            let hw = input.outputFormat(forBus: 0)
-            guard hw.sampleRate > 0, hw.channelCount > 0 else { throw NSError(domain: "7Tools", code: 1) }
-            let fxFmt = hw
+            guard input.outputFormat(forBus: 0).sampleRate > 0 else { throw NSError(domain: "7Tools", code: 1) }
 
-            // wejscie idzie dwiema drogami: do miksera (looper, stroik) i przez efekty do wyjscia
+            // Wejscie idzie do jednego miksera (on sam przelicza format), a dopiero z niego rozgalezia sie
+            // do looplera/stroika (sink) i do toru efektow. Rozgalezienie prosto z wejscia wywala silnik.
             let micMix = AVAudioMixerNode()
             let sink = AVAudioSinkNode { _, frames, list in
                 let bufs = UnsafeMutableAudioBufferListPointer(UnsafeMutablePointer(mutating: list))
@@ -91,42 +90,51 @@ final class SevenGraph {
                 mixer.capture(d0, Int(frames))
                 return noErr
             }
-            let eq = AVAudioUnitEQ(numberOfBands: 2)
-            let pitch = AVAudioUnitTimePitch()
-            let dist = AVAudioUnitDistortion()
-            let delay = AVAudioUnitDelay()
-            let reverb = AVAudioUnitReverb()
-            let gate = AVAudioMixerNode()
-            // limiter na koncu toru efektow: nic nie wyjdzie glosniej, niz pozwalamy
-            let limDesc = AudioComponentDescription(componentType: kAudioUnitType_Effect,
-                                                    componentSubType: kAudioUnitSubType_PeakLimiter,
-                                                    componentManufacturer: kAudioUnitManufacturer_Apple,
-                                                    componentFlags: 0, componentFlagsMask: 0)
-            let limiter = AVAudioUnitEffect(audioComponentDescription: limDesc)
-            for n in [micMix, sink, eq, pitch, dist, delay, reverb, limiter, gate] as [AVAudioNode] { e.attach(n) }
+            if !useFX {
+                // sam mikrofon: wejscie -> mikser -> sink (looper, stroik, miernik, sluchanie)
+                e.attach(micMix)
+                e.attach(sink)
+                e.connect(input, to: micMix, format: nil)
+                e.connect(micMix, to: sink, format: mono)
+            } else {
+                // z efektami glosu: mikser rozgalezia sie do sinka i do lancucha efektow
+                let eq = AVAudioUnitEQ(numberOfBands: 2)
+                let pitch = AVAudioUnitTimePitch()
+                let dist = AVAudioUnitDistortion()
+                let delay = AVAudioUnitDelay()
+                let reverb = AVAudioUnitReverb()
+                let gate = AVAudioMixerNode()
+                // limiter na koncu toru efektow: nic nie wyjdzie glosniej, niz pozwalamy
+                let limDesc = AudioComponentDescription(componentType: kAudioUnitType_Effect,
+                                                        componentSubType: kAudioUnitSubType_PeakLimiter,
+                                                        componentManufacturer: kAudioUnitManufacturer_Apple,
+                                                        componentFlags: 0, componentFlagsMask: 0)
+                let limiter = AVAudioUnitEffect(audioComponentDescription: limDesc)
+                for n in [micMix, sink, eq, pitch, dist, delay, reverb, limiter, gate] as [AVAudioNode] { e.attach(n) }
 
-            e.connect(input, to: [AVAudioConnectionPoint(node: micMix, bus: 0),
-                                  AVAudioConnectionPoint(node: eq, bus: 0)], fromBus: 0, format: hw)
-            e.connect(micMix, to: sink, format: mono)
-            e.connect(eq, to: pitch, format: fxFmt)
-            e.connect(pitch, to: dist, format: fxFmt)
-            e.connect(dist, to: delay, format: fxFmt)
-            e.connect(delay, to: reverb, format: fxFmt)
-            e.connect(reverb, to: limiter, format: fxFmt)
-            e.connect(limiter, to: gate, format: fxFmt)
-            e.connect(gate, to: e.mainMixerNode, format: fxFmt)
-            gate.outputVolume = 0
-            let au = limiter.audioUnit
-            _ = AudioUnitSetParameter(au, kLimiterParam_PreGain, kAudioUnitScope_Global, 0, -8, 0)
-            _ = AudioUnitSetParameter(au, kLimiterParam_AttackTime, kAudioUnitScope_Global, 0, 0.002, 0)
-            _ = AudioUnitSetParameter(au, kLimiterParam_DecayTime, kAudioUnitScope_Global, 0, 0.05, 0)
+                e.connect(input, to: micMix, format: nil)
+                e.connect(micMix, to: [AVAudioConnectionPoint(node: sink, bus: 0),
+                                       AVAudioConnectionPoint(node: eq, bus: 0)], fromBus: 0, format: mono)
+                e.connect(eq, to: pitch, format: mono)
+                e.connect(pitch, to: dist, format: mono)
+                e.connect(dist, to: delay, format: mono)
+                e.connect(delay, to: reverb, format: mono)
+                e.connect(reverb, to: limiter, format: mono)
+                e.connect(limiter, to: gate, format: mono)
+                e.connect(gate, to: e.mainMixerNode, format: mono)
+                gate.outputVolume = 0
+                let au = limiter.audioUnit
+                _ = AudioUnitSetParameter(au, kLimiterParam_PreGain, kAudioUnitScope_Global, 0, -8, 0)
+                _ = AudioUnitSetParameter(au, kLimiterParam_AttackTime, kAudioUnitScope_Global, 0, 0.002, 0)
+                _ = AudioUnitSetParameter(au, kLimiterParam_DecayTime, kAudioUnitScope_Global, 0, 0.05, 0)
 
-            eq.bands[0].filterType = .highPass
-            eq.bands[0].bypass = false
-            eq.bands[1].filterType = .lowPass
-            eq.bands[1].bypass = false
-            self.eq = eq; self.pitch = pitch; self.dist = dist
-            self.delay = delay; self.reverb = reverb; self.gate = gate; self.limiter = limiter
+                eq.bands[0].filterType = .highPass
+                eq.bands[0].bypass = false
+                eq.bands[1].filterType = .lowPass
+                eq.bands[1].bypass = false
+                self.eq = eq; self.pitch = pitch; self.dist = dist
+                self.delay = delay; self.reverb = reverb; self.gate = gate; self.limiter = limiter
+            }
         }
 
         e.mainMixerNode.outputVolume = 1
@@ -221,7 +229,7 @@ final class AudioHub: ObservableObject {
     private func rebuild() {
         do {
             try configureSession()
-            try graph.start(mic: !clients.isEmpty)
+            try graph.start(mic: !clients.isEmpty, fx: clients.contains("voice"))
             running = true
             micOn = !clients.isEmpty
             updateLatency()
