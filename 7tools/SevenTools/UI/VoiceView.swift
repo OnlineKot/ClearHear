@@ -24,7 +24,7 @@ struct VoiceView: View {
                               systemImage: "headphones")
                             .spaced(.subheadline, .semibold)
                     }
-                    .transition(.scale(0.95).combined(with: .opacity))
+                    .transition(.scale(scale: 0.95).combined(with: .opacity))
                 }
 
                 presets

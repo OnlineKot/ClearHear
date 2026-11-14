@@ -97,7 +97,7 @@ struct PadsView: View {
             }
         }
         .id(pads.bank)
-        .transition(.opacity.combined(with: .scale(0.96)))
+        .transition(.opacity.combined(with: .scale(scale: 0.96)))
     }
 }
 

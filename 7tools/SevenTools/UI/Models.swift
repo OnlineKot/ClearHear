@@ -269,7 +269,7 @@ final class LooperModel: ObservableObject {
     // zgrywa petle do jednego pliku WAV (do wyslania, np. AirDropem). Wola to dopiero udostepnianie.
     func export() -> URL? {
         guard let b = hub.mixer.loopMixdown() else { return nil }
-        let out = b.normalized(0.9)
+        let out = b.normalized(to: 0.9)
         let u = FileManager.default.temporaryDirectory.appendingPathComponent("Petla-7Tools.wav")
         do {
             try WAV.encode(out).write(to: u)

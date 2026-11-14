@@ -81,7 +81,7 @@ final class SoundStore: ObservableObject {
     @discardableResult
     func add(_ buffer: SampleBuffer, name: String, creator: String? = nil, license: String? = nil,
              licenseURL: String? = nil, sourceURL: String? = nil) -> SoundItem {
-        let b = buffer.peak() > 0.001 ? buffer.normalized(0.9) : buffer
+        let b = buffer.peak() > 0.001 ? buffer.normalized(to: 0.9) : buffer
         b.fadeEdges()
         let item = SoundItem(id: UUID().uuidString, name: name, seconds: b.duration,
                              creator: creator, license: license, licenseURL: licenseURL, sourceURL: sourceURL)

@@ -231,7 +231,7 @@ struct LooperView: View {
                         Slider(value: Binding(get: { Double(l.gain) }, set: { model.setGain(i, Float($0)) }), in: 0...1.5)
                             .disabled(l.muted)
                     }
-                    .transition(.asymmetric(insertion: .scale(0.9).combined(with: .opacity), removal: .opacity))
+                    .transition(.asymmetric(insertion: .scale(scale: 0.9).combined(with: .opacity), removal: .opacity))
                 }
             }
         }
