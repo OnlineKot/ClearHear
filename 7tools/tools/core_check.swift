@@ -288,6 +288,47 @@ struct CoreCheck {
             check(rms(off[2400..<4800]) < 0.001, "po wylaczeniu cisza")
         }
 
+
+        print("Skaner ultradzwiekowy")
+        do {
+            let rate = 48000.0
+            let eng = SonarEngine(rate: rate)
+            var rng = Noise()
+            func scene(_ echoes: [(Double, Float)]) -> [Float] {
+                var x = [Float](repeating: 0, count: 8192)
+                for i in 0..<x.count { x[i] = rng.next() * 0.002 }
+                func put(_ at: Int, _ amp: Float) {
+                    for i in 0..<eng.chirp.count where at + i < x.count { x[at + i] += eng.chirp.data[i] * amp }
+                }
+                put(1500, 0.5)    // sygnal bezposredni (glosnik -> mikrofon)
+                for (m, a) in echoes { put(1500 + Int(2 * m / Ultra.speedOfSound * rate), a) }
+                return x
+            }
+            let one = eng.analyze(scene([(3.0, 0.05)]))
+            check(one.direct != nil && abs(one.direct! - 1500) < 6, "znalazl sygnal bezposredni (\(one.direct ?? -1))")
+            check(one.echoes.count == 1 && abs(one.echoes[0].meters - 3.0) < 0.12, "echo z 3 m: \(one.echoes.map { String(format: "%.2f", $0.meters) })")
+            let two = eng.analyze(scene([(1.5, 0.08), (3.5, 0.03)]))
+            check(two.echoes.count == 2 && abs(two.echoes[0].meters - 1.5) < 0.12 && abs(two.echoes[1].meters - 3.5) < 0.12,
+                  "dwa echa: \(two.echoes.map { String(format: "%.2f", $0.meters) })")
+            check(two.echoes[0].strength > two.echoes[1].strength, "blizsze echo jest silniejsze")
+            let none = eng.analyze(scene([]))
+            check(none.echoes.isEmpty, "bez ech nic nie zglasza (\(none.echoes.count))")
+            let silence = eng.analyze([Float](repeating: 0, count: 8192))
+            check(silence.direct == nil && silence.echoes.isEmpty, "cisza to brak wyniku")
+
+            // pasma wysokich tonow
+            let fft = FFT(2048)
+            var tone = [Float](repeating: 0, count: 2048)
+            for i in 0..<2048 { tone[i] = 0.3 * sinf(2 * .pi * 19000 * Float(i) / 48000) + rng.next() * 0.001 }
+            let b = Ultra.bands(tone, rate: 48000, count: 20, from: 14000, to: 24000, fft: fft)
+            let best = b.indices.max { b[$0] < b[$1] }!
+            let center = 14000 + 10000 * (Float(best) + 0.5) / 20
+            check(abs(center - 19000) < 600, "19 kHz laduje w pasmie okolo \(Int(center)) Hz")
+            check(b[best] > b.sorted()[10] + 20, "ton wyraznie ponad tlem")
+            let quiet = Ultra.bands((0..<2048).map { _ in rng.next() * 0.001 }, rate: 48000, count: 20, from: 14000, to: 24000, fft: fft)
+            check((quiet.max() ?? 0) - (quiet.min() ?? 0) < 20, "szum jest plaski")
+        }
+
         print("Stroik")
         do {
             let rate: Float = 48000

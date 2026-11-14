@@ -7,7 +7,7 @@ struct ToolsView: View {
     @State private var showStage = false
 
     enum Tool: String, Hashable, CaseIterable, Identifiable {
-        case tuner, tone, meter, morse, clap, talk
+        case tuner, tone, meter, morse, clap, talk, ultra
         case whereAmI, stage, gestures, level
         case strobe, dice, counter, convert, qr, screen, mirror, send
         case pranks, settings
@@ -21,6 +21,7 @@ struct ToolsView: View {
             case .meter: return "Miernik dźwięku"
             case .morse: return "Morse"
             case .clap: return "Znajdź telefon"
+            case .ultra: return "Skaner ultradźwiękowy"
             case .talk: return "Mówiący pad"
             case .whereAmI: return "Gdzie jestem"
             case .stage: return "Tryb obrotowy"
@@ -46,6 +47,7 @@ struct ToolsView: View {
             case .meter: return "Jak głośno jest wokół, z wykresem."
             case .morse: return "Dźwiękiem, błyskiem ekranu i latarką."
             case .clap: return "Klaśnij dwa razy, a telefon zadzwoni."
+            case .ultra: return "Sonar na echo i detektor wysokich tonów. Dla zabawy."
             case .talk: return "Wpisz tekst, a telefon go wypowie."
             case .whereAmI: return "Miejsce, kompas, wysokość, słońce, parking."
             case .stage: return "Pady i pętla, które obracają się do góry nogami i na bok."
@@ -71,6 +73,7 @@ struct ToolsView: View {
             case .meter: return "gauge.with.needle.fill"
             case .morse: return "dot.radiowaves.right"
             case .clap: return "hands.clap.fill"
+            case .ultra: return "dot.radiowaves.forward"
             case .talk: return "text.bubble.fill"
             case .whereAmI: return "location.fill"
             case .stage: return "rotate.3d"
@@ -96,6 +99,7 @@ struct ToolsView: View {
             case .meter: return .orange
             case .morse: return .pink
             case .clap: return .yellow
+            case .ultra: return .cyan
             case .talk: return .mint
             case .whereAmI: return .blue
             case .stage: return .indigo
@@ -116,7 +120,7 @@ struct ToolsView: View {
     }
 
     private let groups: [(String, [Tool])] = [
-        ("Dźwięk", [.tuner, .tone, .meter, .morse, .clap, .talk]),
+        ("Dźwięk", [.tuner, .tone, .meter, .morse, .ultra, .clap, .talk]),
         ("Gdzie jestem i ruch", [.whereAmI, .stage, .gestures, .level]),
         ("Przydatne", [.strobe, .dice, .counter, .convert, .qr, .screen, .mirror, .send]),
         ("Dla zabawy", [.pranks]),
@@ -177,6 +181,7 @@ struct ToolsView: View {
         case .meter: MeterView()
         case .morse: MorseView()
         case .clap: ClapFinderView()
+        case .ultra: UltraView(hub: hub)
         case .talk: TalkView()
         case .whereAmI: LocationView()
         case .stage: EmptyView()

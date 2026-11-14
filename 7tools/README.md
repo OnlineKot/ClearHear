@@ -12,7 +12,7 @@ Apka na iPhone'a z narzędziami dźwiękowymi, w Liquid Glass (iOS 26). Da się 
 | **Pętla** | Looper: pierwsza warstwa ustala długość, kolejne dogrywasz na wierzch (do 8), cofanie, wyciszanie i głośność warstw. Nagrywa z mikrofonu albo z padów i klawiszy, więc można zapętlać soundboard. Metronom, zaokrąglanie do uderzeń, korekta opóźnienia. Zgranie do WAV i wysłanie AirDropem albo zapis do biblioteki. |
 | **Sampler** | Dowolny dźwięk jako instrument: klawiatura na dwie oktawy, przycinanie, nuta bazowa, narastanie i wybrzmiewanie, pętla przy trzymaniu, odwracanie. Tryb "Pocięte": 16 równych kawałków na padach (chopy). |
 | **Głos** | Mikrofon z efektami na żywo w słuchawkach: Agent 007, Robot, Pisklak, Demon, Echo, Hala, Telefon. Tylko ze słuchawkami, żeby nie piszczało. |
-| **Narzędzia** | Stroik (YIN), generator tonów (sinus, prostokąt, piła, trójkąt, szum, przemiatanie), miernik dźwięku z wykresem, Morse (dźwięk, błysk ekranu i latarka). |
+| **Narzędzia** | Skaner ultradźwiękowy (sonar na echo 17 do 21 kHz plus detektor wysokich tonów 14 do 24 kHz, dla zabawy), stroik (YIN), generator tonów (sinus, prostokąt, piła, trójkąt, szum, przemiatanie), miernik dźwięku z wykresem, Morse (dźwięk, błysk ekranu i latarka). |
 
 AirDrop: apka udostępnia pliki zwykłym arkuszem udostępniania, odbiorcę wybierasz sam. Masowego wysyłania do obcych nie ma, iOS na to nie pozwala, a poza tym to by było nękanie.
 
