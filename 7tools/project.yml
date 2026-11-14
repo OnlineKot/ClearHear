@@ -17,7 +17,7 @@ targets:
       properties:
         CFBundleDisplayName: 7Tools
         CFBundleName: 007Tools
-        CFBundleShortVersionString: "1.1"
+        CFBundleShortVersionString: "1.2"
         CFBundleVersion: "$(CURRENT_PROJECT_VERSION)"
         NSMicrophoneUsageDescription: 007Tools używa mikrofonu do nagrywania pętli i własnych dźwięków, do stroika, miernika i efektów głosu. Nic nie jest wysyłane.
         NSCameraUsageDescription: Aparat służy do latarki i błysków (Morse, strobo), lusterka i zabawnych psikusów. Obraz nie jest zapisywany ani wysyłany.

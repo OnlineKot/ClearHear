@@ -5,7 +5,7 @@ import AVFoundation
 // Wyjscie z kazdego: 5 razy dotknij lewy gorny rog.
 
 enum Prank: String, CaseIterable, Identifiable {
-    case update, demo, evil, spider, fly, crack, call, battery
+    case update, demo, fakeOS, evil, spider, fly, crack, call, battery
 
     var id: String { rawValue }
 
@@ -13,6 +13,7 @@ enum Prank: String, CaseIterable, Identifiable {
         switch self {
         case .update: return "Aktualizacja systemu"
         case .demo: return "Tryb demo"
+        case .fakeOS: return "Fałszywy iOS"
         case .evil: return "Evil iOS"
         case .spider: return "Pająk na ekranie"
         case .fly: return "Mucha"
@@ -26,6 +27,7 @@ enum Prank: String, CaseIterable, Identifiable {
         switch self {
         case .update: return "Pasek postępu, który nigdy nie dochodzi do końca"
         case .demo: return "Telefon \"ze sklepu\", z którego nie da się wyjść"
+        case .fakeOS: return "Prawie jak prawdziwy: ekran główny, Ustawienia i apki systemowe z głupimi wartościami"
         case .evil: return "Zły system z Evil Safari, Evil Siri i kalkulatorem, który kłamie"
         case .spider: return "Pająk chodzi po ekranie. Da się go zgnieść"
         case .fly: return "Bzyczy i lata po ekranie"
@@ -39,6 +41,7 @@ enum Prank: String, CaseIterable, Identifiable {
         switch self {
         case .update: return "arrow.down.circle.fill"
         case .demo: return "storefront.fill"
+        case .fakeOS: return "iphone.gen3"
         case .evil: return "flame.fill"
         case .spider: return "ladybug.fill"
         case .fly: return "ant.fill"
@@ -52,6 +55,7 @@ enum Prank: String, CaseIterable, Identifiable {
         switch self {
         case .update: return .blue
         case .demo: return .orange
+        case .fakeOS: return .blue
         case .evil: return .red
         case .spider: return .purple
         case .fly: return .green
@@ -136,6 +140,7 @@ struct PrankRunner: View {
         switch prank {
         case .update: FakeUpdate()
         case .demo: DemoMode()
+        case .fakeOS: FakeOSHome()
         case .evil: EvilHome()
         case .spider: BugScreen(kind: .spider)
         case .fly: BugScreen(kind: .fly)
