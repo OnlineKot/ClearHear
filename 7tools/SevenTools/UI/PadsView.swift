@@ -3,8 +3,6 @@ import SwiftUI
 struct PadsView: View {
     @EnvironmentObject private var pads: PadsModel
     @EnvironmentObject private var store: SoundStore
-    @EnvironmentObject private var profiles: ProfileStore
-    @State private var showProfiles = false
     @State private var editSlot: Int?
     @State private var pickSlot: Int?
     @State private var showLibrary = false
@@ -28,7 +26,6 @@ struct PadsView: View {
             })
         }
         .sheet(isPresented: $showLibrary) { LibraryView(pick: nil) }
-        .sheet(isPresented: $showProfiles) { NavigationStack { ProfilesView(inSheet: true) } }
     }
 
     private var content: some View {
@@ -54,17 +51,11 @@ struct PadsView: View {
         HStack(alignment: .center, spacing: 10) {
             VStack(alignment: .leading, spacing: 2) {
                 Text("Pady").spaced(.largeTitle, .bold)
-                Text("Profil: \(profiles.current.name)").spaced(.subheadline).foregroundStyle(.secondary)
+                Text("Soundboard").spaced(.subheadline).foregroundStyle(.secondary)
             }
             Spacer(minLength: 8)
             GlassEffectContainer(spacing: 10) {
                 HStack(spacing: 10) {
-                    Button { showProfiles = true } label: {
-                        Text(profiles.current.emoji).font(.system(size: 22)).frame(width: 46, height: 46)
-                            .glassEffect(.regular.tint(Color(hue: profiles.current.hue, saturation: 0.6, brightness: 1).opacity(0.5)).interactive(), in: .circle)
-                    }
-                    .buttonStyle(.plain)
-                    .accessibilityLabel("Profil: \(profiles.current.name)")
                     GlassIcon(symbol: "globe", tint: nil, label: "Biblioteka dźwięków") { showLibrary = true }
                     GlassIcon(symbol: "pencil", tint: pads.editing ? Theme.gold.opacity(0.6) : nil,
                               label: "Edytuj pady") { withAnimation(.bouncy) { pads.editing.toggle() } }

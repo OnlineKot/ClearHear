@@ -11,7 +11,7 @@ struct ToolsView: View {
         case whereAmI, stage, gestures, level
         case strobe, dice, counter, convert, qr, screen, mirror, send
         case ikea
-        case pranks, profiles, settings
+        case pranks, settings
 
         var id: String { rawValue }
 
@@ -38,7 +38,6 @@ struct ToolsView: View {
             case .send: return "Wyślij obrazki"
             case .ikea: return "IKEA Navigator"
             case .pranks: return "Psikusy"
-            case .profiles: return "Profile"
             case .settings: return "Ustawienia"
             }
         }
@@ -66,7 +65,6 @@ struct ToolsView: View {
             case .send: return "Kilka zdjęć naraz, do wybranej osoby."
             case .ikea: return "Mapa IKEA Katowice, kalibracja pozycji, trasa, lista zakupów i asystent AI."
             case .pranks: return "Fałszywa aktualizacja, tryb demo, Evil iOS i inne."
-            case .profiles: return "Przełączaj osobne zestawy ustawień na jednym koncie."
             case .settings: return "Opóźnienie, wersja, źródła dźwięków."
             }
         }
@@ -94,7 +92,6 @@ struct ToolsView: View {
             case .send: return "photo.on.rectangle.angled"
             case .ikea: return "map.fill"
             case .pranks: return "theatermasks.fill"
-            case .profiles: return "person.2.crop.square.stack.fill"
             case .settings: return "gearshape.fill"
             }
         }
@@ -122,7 +119,6 @@ struct ToolsView: View {
             case .send: return .pink
             case .ikea: return .yellow
             case .pranks: return .red
-            case .profiles: return .indigo
             case .settings: return .gray
             }
         }
@@ -134,7 +130,7 @@ struct ToolsView: View {
         ("Gdzie jestem i ruch", [.whereAmI, .stage, .gestures, .level]),
         ("Przydatne", [.strobe, .dice, .counter, .convert, .qr, .screen, .mirror, .send]),
         ("Dla zabawy", [.pranks]),
-        ("Apka", [.profiles, .settings]),
+        ("Apka", [.settings]),
     ]
 
     var body: some View {
@@ -207,7 +203,6 @@ struct ToolsView: View {
         case .send: SendImagesView()
         case .ikea: IkeaView()
         case .pranks: PranksView()
-        case .profiles: ProfilesView()
         case .settings: SettingsView()
         }
     }

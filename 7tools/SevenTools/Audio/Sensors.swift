@@ -22,8 +22,6 @@ final class MotionHub: ObservableObject {
 
     var available: Bool { mgr.isDeviceMotionAvailable }
 
-    deinit { mgr.stopDeviceMotionUpdates() }
-
     func use(_ id: String) {
         let had = !clients.isEmpty
         clients.insert(id)

@@ -395,38 +395,6 @@ struct CoreCheck {
             check(abs(HeadingCal.diff(o2, 20)) < 1.5, "dociaganie przez 360°/0° (\(Int(o2))°)")
         }
 
-
-        print("Profile")
-        do {
-            check(ProfileScope.isScoped("pads") && ProfileScope.isScoped("ikea.nav.v1") && ProfileScope.isScoped("fake.model")
-                  && ProfileScope.isScoped("listen.gain") && ProfileScope.isScoped("bank.parody") && ProfileScope.isScoped("ai.provider"), "klucze profilu rozpoznane")
-            check(!ProfileScope.isScoped("updateCheck") && !ProfileScope.isScoped("boards.adopted") && !ProfileScope.isScoped("profiles.list")
-                  && !ProfileScope.isScoped("latencyMs") && !ProfileScope.isScoped("padsX") && !ProfileScope.isScoped("spotify"), "klucze wspolne zostaja wspolne")
-            let all: [String: Any] = ["pads": Data([1]), "listen.gain": 9.0, "updateCheck": true, "boards.adopted": ["a": "b"], "counter.value": 3]
-            let sc = ProfileScope.extract(all)
-            check(Set(sc.keys) == Set(["pads", "listen.gain", "counter.value"]), "wycinek profilu: \(sc.keys.sorted())")
-
-            let a = Profile(name: "Ola", emoji: "🐱", hue: 0.1)
-            let b = Profile(name: "ola 2", emoji: "🐶", hue: 0.5)
-            check(ProfileBook.uniqueName("Ola", in: [a, b]) == "Ola 3", "unikalna nazwa: \(ProfileBook.uniqueName("Ola", in: [a, b]))")
-            check(ProfileBook.uniqueName("  ", in: []) == "Profil" && ProfileBook.uniqueName("Ewa", in: [a]) == "Ewa", "puste i wolne nazwy")
-            let h = ProfileBook.nextHue([a, b])
-            check(abs(h - 0.1) > 0.05 && abs(h - 0.5) > 0.05, "nowy kolor nie powtarza zajetych (\(h))")
-
-            let c = Profile(name: "Ewa", emoji: "🦊", hue: 0.8)
-            let list = [a, b, c]
-            let r1 = ProfileBook.afterDelete(list, deleting: b.id, current: b.id)
-            check(r1 != nil && r1!.list.count == 2 && r1!.current == c.id, "usuniecie aktywnego daje sasiada")
-            let r2 = ProfileBook.afterDelete(list, deleting: c.id, current: a.id)
-            check(r2 != nil && r2!.current == a.id && r2!.list.count == 2, "usuniecie innego nie zmienia aktywnego")
-            let r3 = ProfileBook.afterDelete(list, deleting: c.id, current: c.id)
-            check(r3 != nil && r3!.current == b.id, "usuniecie ostatniego daje poprzedni")
-            check(ProfileBook.afterDelete([a], deleting: a.id, current: a.id) == nil, "ostatniego profilu nie da sie usunac")
-            let enc = try? JSONEncoder().encode(list)
-            let dec = enc.flatMap { try? JSONDecoder().decode([Profile].self, from: $0) }
-            check(dec == list, "profile zapisuja sie i odczytuja")
-        }
-
         print("Stroik")
         do {
             let rate: Float = 48000
