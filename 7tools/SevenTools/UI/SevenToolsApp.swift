@@ -14,7 +14,7 @@ struct SevenToolsApp: App {
         WindowGroup {
             ZStack {
                 // wszystko, co zalezy od profilu, powstaje od nowa przy kazdym przelaczeniu (.id)
-                ProfileScope(hub: hub, store: store)
+                ProfileHost(hub: hub, store: store)
                     .id(profiles.generation)
                     .environmentObject(hub)
                     .environmentObject(store)
@@ -51,7 +51,7 @@ struct SevenToolsApp: App {
 }
 
 // Modele zalezne od profilu. Czytaja ustawienia przy tworzeniu, dlatego po zmianie profilu powstaja od nowa.
-struct ProfileScope: View {
+struct ProfileHost: View {
     @StateObject private var pads: PadsModel
     @StateObject private var motion: MotionHub
     @StateObject private var location = LocationHub()
